@@ -1,0 +1,15 @@
+﻿using eShop.Models.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace eShop.Infrastructure.Configuration
+{
+    public class OrderStatusConfiguration : IEntityTypeConfiguration<OrderStatus>
+    {
+        public void Configure(EntityTypeBuilder<OrderStatus> entity)
+        {
+            entity.Property(p => p.OrderStatusId).IsRequired();
+            entity.Property(p => p.Status).IsRequired();
+        }
+    }
+}
