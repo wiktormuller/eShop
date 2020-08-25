@@ -9,8 +9,6 @@ namespace eShop.Infrastructure.Configuration
         public void Configure(EntityTypeBuilder<Order> entity)
         {
             entity.Property(p => p.OrderId).IsRequired();
-            entity.Property(p => p.Customer).IsRequired();
-            entity.Property(p => p.OrderStatus).IsRequired();
         }
     }
 }

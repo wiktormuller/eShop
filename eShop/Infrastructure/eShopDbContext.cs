@@ -1,10 +1,6 @@
 ﻿using eShop.Infrastructure.Configuration;
 using eShop.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace eShop.Infrastructure
 {
@@ -23,6 +19,7 @@ namespace eShop.Infrastructure
             builder.ApplyConfiguration(new OrderConfiguration());
             builder.ApplyConfiguration(new OrderStatusConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
+            //builder.ApplyConfiguration(new AddressConfiguration());
         }
 
         public DbSet<Customer> Customers { get; set; }
