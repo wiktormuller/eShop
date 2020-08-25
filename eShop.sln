@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop", "eShop\eShop.csproj", "{00DA6678-C024-4F91-88CC-B8B239A1F73F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop.Tests", "eShop.Tests\eShop.Tests.csproj", "{0C82DABF-FABB-47EE-A715-986CE79DFFEF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00DA6678-C024-4F91-88CC-B8B239A1F73F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00DA6678-C024-4F91-88CC-B8B239A1F73F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00DA6678-C024-4F91-88CC-B8B239A1F73F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00DA6678-C024-4F91-88CC-B8B239A1F73F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C82DABF-FABB-47EE-A715-986CE79DFFEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C82DABF-FABB-47EE-A715-986CE79DFFEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C82DABF-FABB-47EE-A715-986CE79DFFEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C82DABF-FABB-47EE-A715-986CE79DFFEF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF29F984-2586-497E-B4F4-908B27BC1DE2}
+	EndGlobalSection
+EndGlobal
