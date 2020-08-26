@@ -27,9 +27,9 @@ namespace eShop
                 Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<ICustomer, CustomerService>();
-            //services.AddScoped<IOrder, OrderService>();
-            //services.AddScoped<IOrderStatus, OrderStatusService>();
-            //services.AddScoped<IProuct, ProductService>();
+            services.AddScoped<IOrder, OrderService>();
+            services.AddScoped<IOrderStatus, OrderStatusService>();
+            services.AddScoped<IProduct, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
