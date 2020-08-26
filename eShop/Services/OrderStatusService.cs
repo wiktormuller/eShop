@@ -21,7 +21,7 @@ namespace eShop.Services
             throw new NotImplementedException();
         }
 
-        public OrderStatus GetOrderStatus(Guid id)
+        public OrderStatus GetOrderStatus(int id)
         {
             var orderStatus = _context.OrderStatuses.Where(o => o.OrderStatusId == id).First();
             return orderStatus;

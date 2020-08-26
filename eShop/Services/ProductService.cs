@@ -21,7 +21,7 @@ namespace eShop.Services
             throw new NotImplementedException();
         }
 
-        public Product GetProduct(Guid id)
+        public Product GetProduct(int id)
         {
             var product = _context.Products.Where(p => p.ProductId == id).First();
             return product;

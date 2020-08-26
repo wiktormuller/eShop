@@ -9,7 +9,7 @@ namespace eShop.Models.Interfaces
         IEnumerable<OrderStatus> GetOrderStatuses();
         OrderStatus GetOrderStatus(Guid id);
         void AddOrderStatus(OrderStatus orderStatus);
-        void RemoveOrderStatus(Guid id);
+        void RemoveOrderStatus(OrderStatus orderStatus);
         void UpdateOrderStatus(OrderStatus orderStatus);
     }
 }

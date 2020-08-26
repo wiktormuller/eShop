@@ -6,8 +6,8 @@ using System.Collections.Generic;
 
 namespace eShop.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class CustomersController : ControllerBase
     {
         private readonly ICustomer _customerService;
@@ -29,6 +29,17 @@ namespace eShop.Controllers
         {
             var customer = _customerService.GetCustomer(id);
             return Ok(customer);
+        }
+
+        [HttpPost]
+        public ActionResult<Customer> CreateCustomer([FromBody] Customer customer)
+        {
+            if(ModelState.IsValid)
+            {
+
+            }
+            _customerService.AddCustomer(customer);
+            return CreatedAtRoute(nameof(GetCustomer), new { Id = customer.CustomerId }, customer);
         }
     }
 }

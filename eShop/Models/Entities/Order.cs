@@ -5,7 +5,7 @@ namespace eShop.Models.Entities
 {
     public class Order
     {
-        public Guid OrderId { get; private set; }
+        public int OrderId { get; private set; }
         public Customer Customer { get; private set; }
         public OrderStatus OrderStatus { get; private set; }
         public IEnumerable<Product> Products { get; private set; }

@@ -22,7 +22,7 @@ namespace eShop.Services
             throw new NotImplementedException();
         }
 
-        public Order GetOrder(Guid id)
+        public Order GetOrder(int id)
         {
             var order = _context.Orders.Where(o => o.OrderId == id).First();
             return order;

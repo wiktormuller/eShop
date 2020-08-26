@@ -7,9 +7,9 @@ namespace eShop.Models.Interfaces
     public interface ICustomer
     {
         IEnumerable<Customer> GetCustomers();
-        Customer GetCustomer(Guid id);
+        Customer GetCustomer(int id);
         void AddCustomer(Customer customer);
-        void RemoveCustomer(Guid id);
+        void RemoveCustomer(Customer customer);
         void UpdateCustomer(Customer customer);
     }
 }

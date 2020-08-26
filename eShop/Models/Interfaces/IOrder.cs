@@ -7,9 +7,9 @@ namespace eShop.Models.Interfaces
     public interface IOrder
     {
         IEnumerable<Order> GetOrders();
-        Order GetOrder(Guid id);
+        Order GetOrder(int id);
         void AddOrder(Order order);
-        void RemoveOrder(Guid id);
+        void RemoveOrder(Order order);
         void UpdateOrder(Order order);
     }
 }

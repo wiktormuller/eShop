@@ -17,10 +17,15 @@ namespace eShop.Services
         }
         public void AddCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            if(customer == null)
+            {
+                throw new ArgumentNullException(nameof(customer));
+            }
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
         }
 
-        public Customer GetCustomer(Guid id)
+        public Customer GetCustomer(int id)
         {
             var customer = _context.Customers.Where(c => c.CustomerId == id).First();
             return customer;
@@ -31,9 +36,13 @@ namespace eShop.Services
             return _context.Customers;
         }
 
-        public void RemoveCustomer(Guid id)
+        public void RemoveCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            if (customer == null)
+            {
+                throw new ArgumentNullException(nameof(customer));
+            }
+            _context.Customers.Remove(customer);
         }
 
         public void UpdateCustomer(Customer customer)
