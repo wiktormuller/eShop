@@ -34,7 +34,7 @@ namespace eShop.Services
             return orders;
         }
 
-        public void RemoveOrder(Guid id)
+        public void RemoveOrder(Order order)
         {
             throw new NotImplementedException();
         }

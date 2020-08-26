@@ -25,7 +25,7 @@ namespace eShop.Controllers
         }
 
         [HttpGet("{id}", Name = "GetCustomer")]
-        public  ActionResult<Customer> GetCustomer(Guid id)
+        public  ActionResult<Customer> GetCustomer(int id)
         {
             var customer = _customerService.GetCustomer(id);
             return Ok(customer);

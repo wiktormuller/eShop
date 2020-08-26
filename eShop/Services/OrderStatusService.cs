@@ -33,7 +33,7 @@ namespace eShop.Services
             return orderStatuses;
         }
 
-        public void RemoveOrderStatus(Guid id)
+        public void RemoveOrderStatus(OrderStatus orderStatus)
         {
             throw new NotImplementedException();
         }

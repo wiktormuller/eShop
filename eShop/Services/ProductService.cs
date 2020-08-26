@@ -33,7 +33,7 @@ namespace eShop.Services
             return products;
         }
 
-        public void RemoveProduct(Guid id)
+        public void RemoveProduct(Product product)
         {
             throw new NotImplementedException();
         }

@@ -7,7 +7,7 @@ namespace eShop.Models.Interfaces
     public interface IOrderStatus
     {
         IEnumerable<OrderStatus> GetOrderStatuses();
-        OrderStatus GetOrderStatus(Guid id);
+        OrderStatus GetOrderStatus(int id);
         void AddOrderStatus(OrderStatus orderStatus);
         void RemoveOrderStatus(OrderStatus orderStatus);
         void UpdateOrderStatus(OrderStatus orderStatus);
