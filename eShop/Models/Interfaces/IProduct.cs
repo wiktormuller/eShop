@@ -1,12 +1,10 @@
 ﻿using eShop.Models.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace eShop.Models.Interfaces
 {
-    interface IProduct
+    public interface IProduct
     {
         IEnumerable<Product> GetProducts();
         Product GetProduct(Guid id);
