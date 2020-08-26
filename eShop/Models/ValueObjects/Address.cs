@@ -13,7 +13,7 @@ namespace eShop.Models.ValueObjects
         public string Country { get; private set; }
         public string ZipCode { get; private set; }
 
-        public Guid CustomerId { get; set; }
+        public int CustomerId { get; set; }
         public Customer Customer { get; set; }
     }
 }

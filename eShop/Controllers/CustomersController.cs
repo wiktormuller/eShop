@@ -34,10 +34,6 @@ namespace eShop.Controllers
         [HttpPost]
         public ActionResult<Customer> CreateCustomer([FromBody] Customer customer)
         {
-            if(ModelState.IsValid)
-            {
-
-            }
             _customerService.AddCustomer(customer);
             return CreatedAtRoute(nameof(GetCustomer), new { Id = customer.CustomerId }, customer);
         }

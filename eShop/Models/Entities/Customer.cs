@@ -5,14 +5,14 @@ namespace eShop.Models.Entities
 {
     public class Customer
     {
-        public int CustomerId { get; private set; }
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
-        public string Email { get; private set; }    //Other type with validation
+        public int CustomerId { get;  set; }
+        public string FirstName { get;  set; }
+        public string LastName { get;  set; }
+        public string Email { get;  set; }    //Other type with validation
 
-        public Address Address { get; private set; }
+        public Address Address { get;  set; }
 
-        public int OrderId { get; set; }
+        public int? OrderId { get; set; }
         public Order Order { get; set; }
     }
 }

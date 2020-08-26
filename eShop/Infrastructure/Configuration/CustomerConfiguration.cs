@@ -8,7 +8,6 @@ namespace eShop.Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<Customer> entity)
         {
-            entity.Property(p => p.CustomerId).IsRequired();
             entity.Property(p => p.FirstName).IsRequired().HasMaxLength(20);
             entity.Property(p => p.LastName).IsRequired().HasMaxLength(20);
             entity.Property(p => p.Email).IsRequired();

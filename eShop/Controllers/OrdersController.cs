@@ -25,7 +25,7 @@ namespace eShop.Controllers
         }
 
         [HttpGet("{id}", Name = "GetOrder")]
-        public ActionResult<Order> GetOrder(Guid id)
+        public ActionResult<Order> GetOrder(int id)
         {
             var order = _orderService.GetOrder(id);
             return Ok(order);

@@ -28,7 +28,7 @@ namespace eShop.Controllers
         }
 
         [HttpGet("{id}", Name = "GetProcut")]
-        public ActionResult<Product> GetProduct(Guid id)
+        public ActionResult<Product> GetProduct(int id)
         {
             var product = _productService.GetProduct(id);
             return Ok(product);
