@@ -3,6 +3,7 @@ using eShop.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace eShop.Controllers
 {
@@ -25,7 +26,7 @@ namespace eShop.Controllers
         }
 
         [HttpGet("{id}", Name = "GetCustomer")]
-        public  ActionResult<Customer> GetCustomer(int id)
+        public ActionResult<Customer> GetCustomer(int id)
         {
             var customer = _customerService.GetCustomer(id);
             return Ok(customer);
@@ -38,7 +39,19 @@ namespace eShop.Controllers
             return CreatedAtRoute(nameof(GetCustomer), new { Id = customer.CustomerId }, customer);
         }
 
-        [HttpDelete]
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateCustomer(int id, Customer customer)
+        {
+            var customerModel = _customerService.GetCustomer(id);
+            if(customerModel == null)
+            {
+                return NotFound();
+            }
+            await _customerService.UpdateCustomer(customer);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
         public ActionResult<Customer> DeleteCustomer(int id)
         {
             var customer = _customerService.GetCustomer(id);

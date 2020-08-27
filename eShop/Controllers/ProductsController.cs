@@ -34,7 +34,7 @@ namespace eShop.Controllers
             return Ok(product);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult<Product> DeleteProduct(int id)
         {
             var product = _productService.GetProduct(id);

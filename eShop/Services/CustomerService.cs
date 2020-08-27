@@ -1,9 +1,11 @@
 ﻿using eShop.Infrastructure;
 using eShop.Models.Entities;
 using eShop.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace eShop.Services
 {
@@ -27,7 +29,7 @@ namespace eShop.Services
 
         public Customer GetCustomer(int id)
         {
-            var customer = _context.Customers.Where(c => c.CustomerId == id).First();
+            var customer = _context.Customers.Where(c => c.CustomerId == id).FirstOrDefault();
             return customer;
         }
 
@@ -46,9 +48,11 @@ namespace eShop.Services
             _context.SaveChanges();
         }
 
-        public void UpdateCustomer(Customer customer)
+        public async Task UpdateCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            //_context.Entry(customer).State = EntityState.Modified;
+            _context.Customers.Update(customer);
+            await _context.SaveChangesAsync(); //???How it works
         }
     }
 }
