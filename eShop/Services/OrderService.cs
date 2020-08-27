@@ -36,7 +36,12 @@ namespace eShop.Services
 
         public void RemoveOrder(Order order)
         {
-            throw new NotImplementedException();
+            if(order == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _context.Orders.Remove(order);
+            _context.SaveChanges();
         }
 
         public void UpdateOrder(Order order)

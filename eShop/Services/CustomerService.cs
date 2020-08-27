@@ -43,6 +43,7 @@ namespace eShop.Services
                 throw new ArgumentNullException(nameof(customer));
             }
             _context.Customers.Remove(customer);
+            _context.SaveChanges();
         }
 
         public void UpdateCustomer(Customer customer)

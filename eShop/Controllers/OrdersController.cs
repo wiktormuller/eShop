@@ -30,5 +30,17 @@ namespace eShop.Controllers
             var order = _orderService.GetOrder(id);
             return Ok(order);
         }
+        
+        [HttpDelete]
+        public ActionResult<Order> DeleteOrder(int id)
+        {
+            var order = _orderService.GetOrder(id);
+            if(order == null)
+            {
+                return NotFound();
+            }
+            _orderService.RemoveOrder(order);
+            return NoContent();
+        }
     }
 }

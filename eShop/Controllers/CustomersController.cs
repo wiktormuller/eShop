@@ -37,5 +37,17 @@ namespace eShop.Controllers
             _customerService.AddCustomer(customer);
             return CreatedAtRoute(nameof(GetCustomer), new { Id = customer.CustomerId }, customer);
         }
+
+        [HttpDelete]
+        public ActionResult<Customer> DeleteCustomer(int id)
+        {
+            var customer = _customerService.GetCustomer(id);
+            if(customer == null)
+            {
+                return NotFound();
+            }
+            _customerService.RemoveCustomer(customer);
+            return NoContent();
+        }
     }
 }

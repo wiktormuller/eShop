@@ -35,7 +35,12 @@ namespace eShop.Services
 
         public void RemoveOrderStatus(OrderStatus orderStatus)
         {
-            throw new NotImplementedException();
+            if(orderStatus == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _context.OrderStatuses.Remove(orderStatus);
+            _context.SaveChanges();
         }
 
         public void UpdateOrderStatus(OrderStatus orderStatus)

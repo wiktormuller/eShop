@@ -33,5 +33,17 @@ namespace eShop.Controllers
             var product = _productService.GetProduct(id);
             return Ok(product);
         }
+
+        [HttpDelete]
+        public ActionResult<Product> DeleteProduct(int id)
+        {
+            var product = _productService.GetProduct(id);
+            if(product == null)
+            {
+                return NotFound();
+            }
+            _productService.RemoveProduct(product);
+            return NoContent();
+        }
     }
 }

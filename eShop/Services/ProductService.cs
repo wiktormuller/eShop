@@ -35,7 +35,12 @@ namespace eShop.Services
 
         public void RemoveProduct(Product product)
         {
-            throw new NotImplementedException();
+            if(product == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _context.Products.Remove(product);
+            _context.SaveChanges();
         }
 
         public void UpdateProduct(Product product)
