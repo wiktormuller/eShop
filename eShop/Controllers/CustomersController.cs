@@ -40,14 +40,14 @@ namespace eShop.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateCustomer(int id, Customer customer)
+        public ActionResult UpdateCustomer(int id, Customer customer)
         {
-            var customerModel = _customerService.GetCustomer(id);
+            /*var customerModel = _customerService.GetCustomer(id); //Use it when use mapping
             if(customerModel == null)
             {
                 return NotFound();
-            }
-            await _customerService.UpdateCustomer(customer);
+            }*/
+            _customerService.UpdateCustomer(customer);
             return NoContent();
         }
 

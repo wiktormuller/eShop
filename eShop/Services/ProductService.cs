@@ -18,7 +18,12 @@ namespace eShop.Services
 
         public void AddProduct(Product product)
         {
-            throw new NotImplementedException();
+            if(product == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _context.Products.Add(product);
+            _context.SaveChanges();
         }
 
         public Product GetProduct(int id)
@@ -45,7 +50,8 @@ namespace eShop.Services
 
         public void UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            _context.Update(product);
+            _context.SaveChanges();
         }
     }
 }

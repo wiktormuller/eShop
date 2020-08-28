@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace eShop.Services
@@ -48,11 +49,10 @@ namespace eShop.Services
             _context.SaveChanges();
         }
 
-        public async Task UpdateCustomer(Customer customer)
+        public void UpdateCustomer(Customer customer)
         {
-            //_context.Entry(customer).State = EntityState.Modified;
-            _context.Customers.Update(customer);
-            await _context.SaveChangesAsync(); //???How it works
+           _context.Update(customer);
+           _context.SaveChanges();
         }
     }
 }

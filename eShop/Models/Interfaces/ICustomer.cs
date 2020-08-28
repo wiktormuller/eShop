@@ -11,6 +11,6 @@ namespace eShop.Models.Interfaces
         Customer GetCustomer(int id);
         void AddCustomer(Customer customer);
         void RemoveCustomer(Customer customer);
-        Task UpdateCustomer(Customer customer);
+        void UpdateCustomer(Customer customer);
     }
 }

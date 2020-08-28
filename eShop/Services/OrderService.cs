@@ -19,7 +19,12 @@ namespace eShop.Services
 
         public void AddOrder(Order order)
         {
-            throw new NotImplementedException();
+            if(order == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _context.Orders.Add(order);
+            _context.SaveChanges();
         }
 
         public Order GetOrder(int id)
@@ -46,7 +51,8 @@ namespace eShop.Services
 
         public void UpdateOrder(Order order)
         {
-            throw new NotImplementedException();
+            _context.Update(order);
+            _context.SaveChanges();
         }
     }
 }

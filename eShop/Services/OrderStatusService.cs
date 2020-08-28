@@ -18,7 +18,12 @@ namespace eShop.Services
 
         public void AddOrderStatus(OrderStatus orderStatus)
         {
-            throw new NotImplementedException();
+            if(orderStatus == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _context.OrderStatuses.Add(orderStatus);
+            _context.SaveChanges();
         }
 
         public OrderStatus GetOrderStatus(int id)
@@ -45,7 +50,8 @@ namespace eShop.Services
 
         public void UpdateOrderStatus(OrderStatus orderStatus)
         {
-            throw new NotImplementedException();
+            _context.Update(orderStatus);
+            _context.SaveChanges();
         }
     }
 }

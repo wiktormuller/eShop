@@ -34,6 +34,19 @@ namespace eShop.Controllers
             return Ok(product);
         }
 
+        [HttpPut("{id}")]
+        public ActionResult UpdateProduct(int id, Product product)
+        {
+            /*var productModel = _productService.GetProduct(id);
+            if(productModel == null)
+            {
+                return NotFound();
+            }*/
+
+            _productService.UpdateProduct(product);
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         public ActionResult<Product> DeleteProduct(int id)
         {

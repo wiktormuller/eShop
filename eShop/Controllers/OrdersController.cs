@@ -31,6 +31,19 @@ namespace eShop.Controllers
             return Ok(order);
         }
         
+        [HttpPut("{id}")]
+        public ActionResult UpdateOrder(int id, Order order)
+        {
+            /*var orderModel = _orderService.GetOrder(id);
+            if(orderModel == null)
+            {
+                return NotFound();
+            }*/
+
+            _orderService.UpdateOrder(order);
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         public ActionResult<Order> DeleteOrder(int id)
         {
