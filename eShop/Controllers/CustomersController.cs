@@ -1,8 +1,11 @@
-﻿using eShop.Models.Entities;
+﻿using eShop.DTO;
+using eShop.Models.Entities;
 using eShop.Models.Interfaces;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace eShop.Controllers
@@ -21,7 +24,15 @@ namespace eShop.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Customer>> GetCustomers()
         {
-            var customers = _customerService.GetCustomers();
+            var customers = _customerService.GetCustomers().Select(c =>
+                new CustomerReadDTO()
+                {
+                    CustomerId = c.CustomerId,
+                    FirstName = c.FirstName,
+                    LastName = c.LastName,
+                    Email = c.Email
+                }).ToList();
+            
             return Ok(customers);
         }
 
@@ -29,25 +40,85 @@ namespace eShop.Controllers
         public ActionResult<Customer> GetCustomer(int id)
         {
             var customer = _customerService.GetCustomer(id);
-            return Ok(customer);
+            var model = new CustomerReadDTO()
+            {
+                CustomerId = customer.CustomerId,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName,
+                Email = customer.Email
+            };
+            return Ok(model);
         }
 
         [HttpPost]
-        public ActionResult<Customer> CreateCustomer([FromBody] Customer customer)
+        public ActionResult<CustomerReadDTO> CreateCustomer([FromBody] CustomerCreateDTO commandCreateDto) //Return type is CustomerReadDTO as a HTTP response
         {
-            _customerService.AddCustomer(customer);
-            return CreatedAtRoute(nameof(GetCustomer), new { Id = customer.CustomerId }, customer);
+            var model = new Customer
+            {
+                CustomerId = commandCreateDto.CustomerId,
+                FirstName = commandCreateDto.FirstName,
+                LastName = commandCreateDto.LastName,
+                Email = commandCreateDto.Email
+            };
+            _customerService.AddCustomer(model);
+
+            var commandReadDto = new CustomerReadDTO
+            {
+                CustomerId = model.CustomerId,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email
+            };
+
+            return CreatedAtRoute(nameof(GetCustomer), new { Id = commandReadDto.CustomerId }, commandReadDto);
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateCustomer(int id, Customer customer)
+        public ActionResult UpdateCustomer(int id, CustomerUpdateDTO updatedCustomer)
         {
-            /*var customerModel = _customerService.GetCustomer(id); //Use it when use mapping
-            if(customerModel == null)
+            var customerModelFromRepo = _customerService.GetCustomer(id);
+            if(customerModelFromRepo == null)
             {
                 return NotFound();
-            }*/
-            _customerService.UpdateCustomer(customer);
+            }
+
+            customerModelFromRepo.FirstName = updatedCustomer.FirstName;
+            customerModelFromRepo.LastName = updatedCustomer.LastName;
+            customerModelFromRepo.Email = updatedCustomer.Email;
+
+            _customerService.UpdateCustomer(customerModelFromRepo);
+            return NoContent();
+        }
+
+        [HttpPatch]
+        public ActionResult PartialUpdateCustomer(int id, JsonPatchDocument<CustomerUpdateDTO> patchDoc)
+        {
+            var customerModelFromRepo = _customerService.GetCustomer(id);
+            if(customerModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            var customerToPatch = new CustomerUpdateDTO
+            {
+                FirstName = customerModelFromRepo.FirstName,
+                LastName = customerModelFromRepo.LastName,
+                Email = customerModelFromRepo.Email
+            };
+
+            patchDoc.ApplyTo(customerToPatch, ModelState);
+
+            if(!TryValidateModel(customerToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            customerModelFromRepo.FirstName = customerToPatch.FirstName;
+            customerModelFromRepo.LastName = customerToPatch.LastName;
+            customerModelFromRepo.Email = customerToPatch.Email;
+
+            _customerService.UpdateCustomer(customerModelFromRepo);
+
             return NoContent();
         }
 
