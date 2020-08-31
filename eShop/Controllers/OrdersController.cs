@@ -1,5 +1,7 @@
-﻿using eShop.Models.Entities;
+﻿using eShop.DTO;
+using eShop.Models.Entities;
 using eShop.Models.Interfaces;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

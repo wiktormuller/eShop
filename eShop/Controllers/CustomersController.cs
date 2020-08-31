@@ -51,14 +51,13 @@ namespace eShop.Controllers
         }
 
         [HttpPost]
-        public ActionResult<CustomerReadDTO> CreateCustomer([FromBody] CustomerCreateDTO commandCreateDto) //Return type is CustomerReadDTO as a HTTP response
+        public ActionResult<CustomerReadDTO> CreateCustomer([FromBody] CustomerCreateDTO customerCreateDto) //Return type is CustomerReadDTO as a HTTP response
         {
             var model = new Customer
             {
-                CustomerId = commandCreateDto.CustomerId,
-                FirstName = commandCreateDto.FirstName,
-                LastName = commandCreateDto.LastName,
-                Email = commandCreateDto.Email
+                FirstName = customerCreateDto.FirstName,
+                LastName = customerCreateDto.LastName,
+                Email = customerCreateDto.Email
             };
             _customerService.AddCustomer(model);
 
