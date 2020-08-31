@@ -90,7 +90,7 @@ namespace eShop.Controllers
             return NoContent();
         }
 
-        [HttpPatch]
+        [HttpPatch("{id}")]
         public ActionResult PartialUpdateCustomer(int id, JsonPatchDocument<CustomerUpdateDTO> patchDoc)
         {
             var customerModelFromRepo = _customerService.GetCustomer(id);
