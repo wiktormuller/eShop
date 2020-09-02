@@ -28,6 +28,8 @@ namespace eShop
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
 
+            services.AddSwaggerGen();
+
             services.AddDbContext<eShopDbContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
 
@@ -44,6 +46,13 @@ namespace eShop
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "eShop API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
 

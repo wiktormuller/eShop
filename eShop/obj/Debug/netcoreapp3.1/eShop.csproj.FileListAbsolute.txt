@@ -60,5 +60,10 @@ C:\Users\Wiktor\Desktop\eShop\eShop\bin\Debug\netcoreapp3.1\Microsoft.EntityFram
 C:\Users\Wiktor\Desktop\eShop\eShop\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\Wiktor\Desktop\eShop\eShop\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Wiktor\Desktop\eShop\eShop\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\Wiktor\Desktop\eShop\eShop\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\Wiktor\Desktop\eShop\eShop\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Wiktor\Desktop\eShop\eShop\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Wiktor\Desktop\eShop\eShop\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Wiktor\Desktop\eShop\eShop\obj\Debug\netcoreapp3.1\eShop.csproj.CoreCompileInputs.cache
+C:\Users\Wiktor\Desktop\eShop\eShop\obj\Debug\netcoreapp3.1\eShop.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Wiktor\Desktop\eShop\eShop\obj\Debug\netcoreapp3.1\eShop.MvcApplicationPartsAssemblyInfo.cache
