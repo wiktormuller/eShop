@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 
 namespace eShop
@@ -27,6 +28,17 @@ namespace eShop
             {
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
+
+            //Add AuthService and configure Bearer as the defult schema
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = "https://localhost:5001";
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateAudience = false
+                    };
+                });
 
             services.AddSwaggerGen();
 
@@ -57,6 +69,8 @@ namespace eShop
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

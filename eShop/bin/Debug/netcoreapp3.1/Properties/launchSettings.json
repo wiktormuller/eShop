@@ -1,12 +1,28 @@
 {
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:57188",
+      "sslPort": 44306
+    }
+  },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "SelfHost": {
-      "commandName": "Project",
+    "IIS Express": {
+      "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "eShop": {
+      "commandName": "Project",
+      "launchUrl": "customer",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:5001"
+      "applicationUrl": "https://localhost:6001;http://localhost:6000"
     }
   }
 }

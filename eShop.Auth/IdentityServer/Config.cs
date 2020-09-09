@@ -38,7 +38,7 @@ namespace IdentityServer
                     },
 
                     //Scopes that client has access to
-                    AllowedScopes = { "api" }
+                    AllowedScopes = { "api1" }
                 }
             };
     }
