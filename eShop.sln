@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop", "eShop\eShop.csproj", "{00DA6678-C024-4F91-88CC-B8B239A1F73F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop", "eShop\eShop.csproj", "{00DA6678-C024-4F91-88CC-B8B239A1F73F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop.Tests", "eShop.Tests\eShop.Tests.csproj", "{0C82DABF-FABB-47EE-A715-986CE79DFFEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.Tests", "eShop.Tests\eShop.Tests.csproj", "{0C82DABF-FABB-47EE-A715-986CE79DFFEF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "eShop.Auth\IdentityServer\IdentityServer.csproj", "{1318F405-B170-4B56-9BC9-04C1A67993C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0C82DABF-FABB-47EE-A715-986CE79DFFEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C82DABF-FABB-47EE-A715-986CE79DFFEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C82DABF-FABB-47EE-A715-986CE79DFFEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1318F405-B170-4B56-9BC9-04C1A67993C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1318F405-B170-4B56-9BC9-04C1A67993C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1318F405-B170-4B56-9BC9-04C1A67993C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1318F405-B170-4B56-9BC9-04C1A67993C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
