@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace eShop.Controllers
 {
+    [Route("[controller]")]
     public class IdentityController : ControllerBase
     {
         [HttpGet]

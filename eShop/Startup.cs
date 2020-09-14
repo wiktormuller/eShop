@@ -47,6 +47,7 @@ namespace eShop
                     policy.RequireAuthenticatedUser();
                     policy.RequireClaim("scope", "api1");
                 });
+            });
 
             services.AddSwaggerGen();
 
