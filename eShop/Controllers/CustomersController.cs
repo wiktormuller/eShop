@@ -1,6 +1,7 @@
 ﻿using eShop.DTO;
 using eShop.Models.Entities;
 using eShop.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace eShop.Controllers
 {
+    [Authorize(Policy = "admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomersController : ControllerBase

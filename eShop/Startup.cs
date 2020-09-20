@@ -1,14 +1,18 @@
 using eShop.Infrastructure;
 using eShop.Models.Interfaces;
 using eShop.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
+using System;
+using System.Text;
 
 namespace eShop
 {
@@ -34,6 +38,31 @@ namespace eShop
             services.AddDbContext<eShopDbContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddAuthentication(x =>
+            {
+                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = Configuration["Auth:Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Auth:Jwt:Key"])),
+                    ValidAudience = Configuration["Auth:Jwt:Audience"],
+                    ClockSkew = TimeSpan.Zero,
+                    RequireExpirationTime = true,
+                    ValidateIssuer = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidateAudience = true
+                };
+            });
+
+            services.AddAuthorization(x => x.AddPolicy("admin", p => p.RequireRole("admin")));
+
             services.AddScoped<ICustomer, CustomerService>();
             services.AddScoped<IOrder, OrderService>();
             services.AddScoped<IOrderStatus, OrderStatusService>();
@@ -58,6 +87,8 @@ namespace eShop
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

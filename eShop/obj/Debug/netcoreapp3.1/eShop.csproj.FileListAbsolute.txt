@@ -68,3 +68,5 @@ C:\Users\Wiktor\Desktop\eShop\eShop\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore
 C:\Users\Wiktor\Desktop\eShop\eShop\obj\Debug\netcoreapp3.1\eShop.csproj.CoreCompileInputs.cache
 C:\Users\Wiktor\Desktop\eShop\eShop\obj\Debug\netcoreapp3.1\eShop.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Wiktor\Desktop\eShop\eShop\obj\Debug\netcoreapp3.1\eShop.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Wiktor\Desktop\eShop\eShop\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authorization.dll
+C:\Users\Wiktor\Desktop\eShop\eShop\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Metadata.dll
