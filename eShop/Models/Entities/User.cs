@@ -22,6 +22,7 @@ namespace eShop.Models.Entities
             UserId = userId;
             SetEmail(email);
             SetUsername(username);
+            SetRole(role);
             SetPassword(password, salt);
             CreatedAt = DateTime.UtcNow;
         }

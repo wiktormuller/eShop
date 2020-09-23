@@ -9,7 +9,7 @@ using System.Text;
 
 namespace eShop.Services
 {
-    public class JwtService
+    public class JwtService : IJwtService
     {
         public IConfiguration _configuration { get; }
 

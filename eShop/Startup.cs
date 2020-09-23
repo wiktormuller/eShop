@@ -61,12 +61,15 @@ namespace eShop
                 };
             });
 
-            services.AddAuthorization(x => x.AddPolicy("admin", p => p.RequireRole("admin")));
+            services.AddAuthorization(x => x.AddPolicy("Admin", p => p.RequireRole("Admin")));
 
             services.AddScoped<ICustomer, CustomerService>();
             services.AddScoped<IOrder, OrderService>();
             services.AddScoped<IOrderStatus, OrderStatusService>();
             services.AddScoped<IProduct, ProductService>();
+            services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IEncrypter, Encrypter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,6 +92,8 @@ namespace eShop
             app.UseRouting();
 
             app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

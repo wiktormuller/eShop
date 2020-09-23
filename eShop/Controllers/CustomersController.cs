@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace eShop.Controllers
 {
-    [Authorize(Policy = "admin")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomersController : ControllerBase
