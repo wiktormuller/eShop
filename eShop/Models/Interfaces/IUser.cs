@@ -1,12 +1,9 @@
 ﻿using eShop.DTO;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace eShop.Services
+namespace eShop.Models.Interfaces
 {
-    public interface IUserService
+    public interface IUser
     {
         UserDTO GetUser(string email);
         IEnumerable<UserDTO> GetUsers();

@@ -1,5 +1,6 @@
 ﻿using eShop.DTO;
 using eShop.Extensions;
+using eShop.Models.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace eShop.Services
 {
-    public class JwtService : IJwtService
+    public class JwtService : IJwt
     {
         public IConfiguration _configuration { get; }
 

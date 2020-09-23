@@ -1,12 +1,13 @@
 ﻿using eShop.DTO;
 using eShop.Infrastructure;
 using eShop.Models.Entities;
+using eShop.Models.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace eShop.Services
 {
-    public class UserService : IUserService
+    public class UserService : IUser
     {
         private readonly eShopDbContext _context;
         private readonly IEncrypter _encrypter;

@@ -1,5 +1,4 @@
 ﻿using eShop.Models.Entities;
-using System;
 using System.Collections.Generic;
 
 namespace eShop.Models.Interfaces

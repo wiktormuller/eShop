@@ -1,8 +1,8 @@
 ﻿using eShop.DTO;
 
-namespace eShop.Services
+namespace eShop.Models.Interfaces
 {
-    public interface IJwtService
+    public interface IJwt
     {
         JwtDTO CreateToken(int userId, string role);
     }

@@ -67,8 +67,9 @@ namespace eShop
             services.AddScoped<IOrder, OrderService>();
             services.AddScoped<IOrderStatus, OrderStatusService>();
             services.AddScoped<IProduct, ProductService>();
-            services.AddScoped<IJwtService, JwtService>();
-            services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<IJwt, JwtService>();
+            services.AddScoped<IUser, UserService>();
             services.AddScoped<IEncrypter, Encrypter>();
         }
 

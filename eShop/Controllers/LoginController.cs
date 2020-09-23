@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using eShop.DTO;
-using eShop.Services;
-using Microsoft.AspNetCore.Http;
+using eShop.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eShop.Controllers
@@ -13,10 +9,10 @@ namespace eShop.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly IUserService _userService;
-        private readonly IJwtService _jwtService;
+        private readonly IUser _userService;
+        private readonly IJwt _jwtService;
 
-        public LoginController(IUserService userService, IJwtService jwtService)
+        public LoginController(IUser userService, IJwt jwtService)
         {
             _userService = userService;
             _jwtService = jwtService;
