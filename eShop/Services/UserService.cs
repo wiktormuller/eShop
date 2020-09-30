@@ -74,7 +74,8 @@ namespace eShop.Services
             var salt = _encrypter.GetSalt(password);
             var hash = _encrypter.GetHash(password, salt);
             user = new User(userId, email, username, role, hash, salt);
-            _context.Add(user);
+            _context.Users.Add(user);
+            _context.SaveChanges();
         }
     }
 }
