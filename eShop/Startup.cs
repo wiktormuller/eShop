@@ -61,7 +61,8 @@ namespace eShop
                 };
             });
 
-            services.AddAuthorization(x => x.AddPolicy("Admin", p => p.RequireRole("Admin")));
+            services.AddAuthorization();
+            //services.AddAuthorization(x => x.AddPolicy("Admin", p => p.RequireRole("Admin")));
 
             services.AddScoped<ICustomer, CustomerService>();
             services.AddScoped<IOrder, OrderService>();
