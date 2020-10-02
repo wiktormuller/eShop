@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eShop.Exceptions;
+using System;
 using System.Text.RegularExpressions;
 
 namespace eShop.Models.Entities
@@ -31,12 +32,12 @@ namespace eShop.Models.Entities
         {
             if(!RegexOfUsername.IsMatch(username))
             {
-                //throw new DomainException(ErrorCodes.InvalidUsername, "Username is inalid");
+                throw new DomainException(DomainErrorCodes.InvalidUsername, "Username is inalid");
             }
 
             if(string.IsNullOrEmpty(username))
             {
-                //throw new DomainException(ErrorCodes.InvalidUsername, "Username is invalid");
+                throw new DomainException(DomainErrorCodes.InvalidUsername, "Username is invalid");
             }
 
             Username = username.ToLowerInvariant();
@@ -47,7 +48,7 @@ namespace eShop.Models.Entities
         {
             if(string.IsNullOrEmpty(email))
             {
-                //throw new DomainException(ErrorCodes.InvalidEmail, "Email cannot be empty");
+                throw new DomainException(DomainErrorCodes.InvalidEmail, "Email cannot be empty");
             }
 
             if(Email == email)
@@ -63,7 +64,7 @@ namespace eShop.Models.Entities
         {
             if(string.IsNullOrWhiteSpace(role))
             {
-                //throw new DomainException(ErrorCodes.InvalidRole, "Role cannot be empty");
+                throw new DomainException(DomainErrorCodes.InvalidRole, "Role cannot be empty");
             }
 
             if(Role == role)
@@ -79,22 +80,22 @@ namespace eShop.Models.Entities
         {
             if(string.IsNullOrWhiteSpace(password))
             {
-                //throw new DomainException(ErrorCodes.InvalidPassword, "Password cannot be empty");
+                throw new DomainException(DomainErrorCodes.InvalidPassword, "Password cannot be empty");
             }
 
             if(string.IsNullOrWhiteSpace(salt))
             {
-                //throw new DomainException(ErrorCodes.InvalidPassword, "Salt cannot be empty");
+                throw new DomainException(DomainErrorCodes.InvalidPassword, "Salt cannot be empty");
             }
 
             if(password.Length < 4)
             {
-                //throw new DomainException(ErrorCodes.InvalidPassword, "Password must contain at least 4 characters");
+                throw new DomainException(DomainErrorCodes.InvalidPassword, "Password must contain at least 4 characters");
             }
 
             if(password.Length > 100)
             {
-                //throw new DomainException(ErrorCodes.InvalidPassword, "Password cannot contain more than 100 characters");
+                throw new DomainException(DomainErrorCodes.InvalidPassword, "Password cannot contain more than 100 characters");
             }
 
             if(Password == password)

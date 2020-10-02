@@ -10,7 +10,7 @@ namespace eShop.Controllers
     public class IdentityController : ControllerBase
     {
         [HttpGet]
-        public IActionResult Get()
+        public ActionResult Get()
         {
             return new JsonResult(from c in User.Claims select new { c.Type, c.Value });
         }

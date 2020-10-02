@@ -1,4 +1,5 @@
 ﻿using eShop.DTO;
+using eShop.Exceptions;
 using eShop.Infrastructure;
 using eShop.Models.Entities;
 using eShop.Models.Interfaces;
@@ -52,7 +53,7 @@ namespace eShop.Services
             var user = _context.Users.FirstOrDefault(u => u.Email == email);
             if(user == null)
             {
-                //throw new ServiceException(ErrorCodes.InvalidCredentials, "Invalid credentials");
+                throw new ServiceException(ServiceErrorCodes.InvalidCredentials, "Invalid credentials");
             }
 
             var hash = _encrypter.GetHash(password, user.Salt);
@@ -60,7 +61,7 @@ namespace eShop.Services
             {
                 return;
             }
-            //throw new ServiceException(ErrorCodes.InvalidCredentials, "Invalid credentials");
+            throw new ServiceException(ServiceErrorCodes.InvalidCredentials, "Invalid credentials");
         }
 
         public void Register(int userId, string email, string username, string password, string role)
@@ -68,7 +69,7 @@ namespace eShop.Services
             var user = _context.Users.FirstOrDefault(u => u.Email == email);
             if(user != null)
             {
-                //throw new ServiceException(ErrorCodes.EmailInUse, $"User with email: '{email}' already exists.");
+                throw new ServiceException(ServiceErrorCodes.EmailInUse, $"User with email: '{email}' already exists.");
             }
 
             var salt = _encrypter.GetSalt(password);
