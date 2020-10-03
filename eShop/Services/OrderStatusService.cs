@@ -28,7 +28,7 @@ namespace eShop.Services
 
         public OrderStatus GetOrderStatus(int id)
         {
-            var orderStatus = _context.OrderStatuses.Where(o => o.OrderStatusId == id).First();
+            var orderStatus = _context.OrderStatuses.Where(o => o.OrderStatusId == id).FirstOrDefault();
             return orderStatus;
         }
 

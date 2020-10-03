@@ -28,7 +28,7 @@ namespace eShop.Services
 
         public Product GetProduct(int id)
         {
-            var product = _context.Products.Where(p => p.ProductId == id).First();
+            var product = _context.Products.Where(p => p.ProductId == id).FirstOrDefault();
             return product;
         }
 

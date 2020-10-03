@@ -28,7 +28,7 @@ namespace eShop.Services
 
         public Order GetOrder(int id)
         {
-            var order = _context.Orders.Where(o => o.OrderId == id).First();
+            var order = _context.Orders.Where(o => o.OrderId == id).FirstOrDefault();
             return order;
         }
 
