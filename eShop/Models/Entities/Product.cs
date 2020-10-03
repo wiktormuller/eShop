@@ -11,15 +11,21 @@ namespace eShop.Models.Entities
         public ProductColor Color { get; protected set; }
         public string Description { get; protected set; }
 
-        public Product(int productId, string name, decimal price, string description)
+        public Product(int productId, string name, decimal price, ProductColor color, string description)
         {
             ProductId = productId;
             SetName(name);
             SetPrice(price);
+            SetColor(color);
             SetDescription(description);
         }
 
-        private void SetDescription(string description)
+        public void SetColor(ProductColor color)
+        {
+            Color = color;
+        }
+
+        public void SetDescription(string description)
         {
             if(string.IsNullOrEmpty(description))
             {

@@ -54,12 +54,13 @@ namespace eShop.Controllers
         public ActionResult<ProductReadDTO> CreateProduct([FromBody] ProductCreateDTO productCreateDto)
         {
             var model = new Product
-            {
-                Name = productCreateDto.Name,
-                Price = productCreateDto.Price,
-                Color = productCreateDto.Color,
-                Description = productCreateDto.Description
-            };
+            (
+                productCreateDto.ProductId,
+                productCreateDto.Name,
+                productCreateDto.Price,
+                productCreateDto.Color,
+                productCreateDto.Description
+            );
             _productService.AddProduct(model);
 
             var productReadDto = new ProductReadDTO
@@ -82,10 +83,10 @@ namespace eShop.Controllers
                 return NotFound();
             }
 
-            productModelFromRepo.Name = product.Name;
-            productModelFromRepo.Price = product.Price;
-            productModelFromRepo.Color = product.Color;
-            productModelFromRepo.Description = product.Description;
+            productModelFromRepo.SetName(product.Name);
+            productModelFromRepo.SetPrice(product.Price);
+            productModelFromRepo.SetColor(product.Color);
+            productModelFromRepo.SetDescription(product.Description);
 
             _productService.UpdateProduct(productModelFromRepo);
             return NoContent();
@@ -115,10 +116,10 @@ namespace eShop.Controllers
                 return ValidationProblem(ModelState);
             }
 
-            productModelFromRepo.Name = productToPatch.Name;
-            productModelFromRepo.Price = productToPatch.Price;
-            productModelFromRepo.Color = productToPatch.Color;
-            productModelFromRepo.Description = productToPatch.Description;
+            productModelFromRepo.SetName(productToPatch.Name);
+            productModelFromRepo.SetPrice(productToPatch.Price);
+            productModelFromRepo.SetColor(productToPatch.Color);
+            productModelFromRepo.SetDescription(productToPatch.Description);
 
             _productService.UpdateProduct(productModelFromRepo);
 

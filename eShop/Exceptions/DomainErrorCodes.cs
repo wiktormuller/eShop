@@ -11,5 +11,6 @@
         public static string InvalidName => "invalid_name";
         public static string InvalidPrice => "invalid_price";
         public static string InvalidDescription => "invalid_description";
+        public static string InvalidColor => "invalid_color";
     }
 }

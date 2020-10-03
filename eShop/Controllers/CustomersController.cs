@@ -54,11 +54,12 @@ namespace eShop.Controllers
         public ActionResult<CustomerReadDTO> CreateCustomer([FromBody] CustomerCreateDTO customerCreateDto) //Return type is CustomerReadDTO as a HTTP response
         {
             var model = new Customer
-            {
-                FirstName = customerCreateDto.FirstName,
-                LastName = customerCreateDto.LastName,
-                Email = customerCreateDto.Email
-            };
+            (
+                customerCreateDto.CustomerId,
+                customerCreateDto.FirstName,
+                customerCreateDto.LastName,
+                customerCreateDto.Email
+            );
             _customerService.AddCustomer(model);
 
             var commandReadDto = new CustomerReadDTO
@@ -81,9 +82,9 @@ namespace eShop.Controllers
                 return NotFound();
             }
 
-            customerModelFromRepo.FirstName = updatedCustomer.FirstName;
-            customerModelFromRepo.LastName = updatedCustomer.LastName;
-            customerModelFromRepo.Email = updatedCustomer.Email;
+            customerModelFromRepo.SetFirstName(updatedCustomer.FirstName);
+            customerModelFromRepo.SetLastName(updatedCustomer.LastName);
+            customerModelFromRepo.SetEmail(updatedCustomer.Email);
 
             _customerService.UpdateCustomer(customerModelFromRepo);
             return NoContent();
@@ -112,9 +113,9 @@ namespace eShop.Controllers
                 return ValidationProblem(ModelState);
             }
 
-            customerModelFromRepo.FirstName = customerToPatch.FirstName;
-            customerModelFromRepo.LastName = customerToPatch.LastName;
-            customerModelFromRepo.Email = customerToPatch.Email;
+            customerModelFromRepo.SetFirstName(customerToPatch.FirstName);
+            customerModelFromRepo.SetLastName(customerToPatch.LastName);
+            customerModelFromRepo.SetEmail(customerToPatch.Email);
 
             _customerService.UpdateCustomer(customerModelFromRepo);
 
