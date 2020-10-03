@@ -3,8 +3,10 @@ using eShop.Exceptions;
 using eShop.Infrastructure;
 using eShop.Models.Entities;
 using eShop.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace eShop.Services
 {
@@ -19,9 +21,9 @@ namespace eShop.Services
             _encrypter = encrypter;
         }
 
-        public UserDTO GetUser(string email)
+        public async Task<UserDTO> GetUser(string email)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             return new UserDTO
             {
                 Id = user.UserId,
@@ -32,9 +34,9 @@ namespace eShop.Services
             };
         }
 
-        public IEnumerable<UserDTO> GetUsers()
+        public async Task<IEnumerable<UserDTO>> GetUsers()
         {
-            var model = _context.Users;
+            var model = await _context.Users.ToListAsync();
             var users = model.Select(u =>
                 new UserDTO
                 {
@@ -48,9 +50,9 @@ namespace eShop.Services
             return users;
         }
 
-        public void Login(string email, string password)
+        public async Task Login(string email, string password)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if(user == null)
             {
                 throw new ServiceException(ServiceErrorCodes.InvalidCredentials, "Invalid credentials");
@@ -64,9 +66,9 @@ namespace eShop.Services
             throw new ServiceException(ServiceErrorCodes.InvalidCredentials, "Invalid credentials");
         }
 
-        public void Register(int userId, string email, string username, string password, string role)
+        public async Task Register(int userId, string email, string username, string password, string role)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if(user != null)
             {
                 throw new ServiceException(ServiceErrorCodes.EmailInUse, $"User with email: '{email}' already exists.");
@@ -76,7 +78,7 @@ namespace eShop.Services
             var hash = _encrypter.GetHash(password, salt);
             user = new User(userId, email, username, role, hash, salt);
             _context.Users.Add(user);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
