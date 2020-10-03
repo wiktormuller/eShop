@@ -1,9 +1,11 @@
 ﻿using eShop.Infrastructure;
 using eShop.Models.Entities;
 using eShop.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace eShop.Services
 {
@@ -16,42 +18,42 @@ namespace eShop.Services
             _context = context;
         }
 
-        public void AddOrder(Order order)
+        public async Task AddOrder(Order order)
         {
             if(order == null)
             {
                 throw new ArgumentNullException();
             }
             _context.Orders.Add(order);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public Order GetOrder(int id)
+        public async Task<Order> GetOrder(int id)
         {
-            var order = _context.Orders.Where(o => o.OrderId == id).FirstOrDefault();
+            var order = await _context.Orders.Where(o => o.OrderId == id).FirstOrDefaultAsync();
             return order;
         }
 
-        public IEnumerable<Order> GetOrders()
+        public async Task<IEnumerable<Order>> GetOrders()
         {
-            var orders = _context.Orders;
+            var orders = await _context.Orders.ToListAsync();
             return orders;
         }
 
-        public void RemoveOrder(Order order)
+        public async Task RemoveOrder(Order order)
         {
             if(order == null)
             {
                 throw new ArgumentNullException();
             }
             _context.Orders.Remove(order);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateOrder(Order order)
+        public async Task UpdateOrder(Order order)
         {
             _context.Update(order);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

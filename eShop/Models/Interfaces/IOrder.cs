@@ -1,14 +1,15 @@
 ﻿using eShop.Models.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace eShop.Models.Interfaces
 {
     public interface IOrder
     {
-        IEnumerable<Order> GetOrders();
-        Order GetOrder(int id);
-        void AddOrder(Order order);
-        void RemoveOrder(Order order);
-        void UpdateOrder(Order order);
+        Task<IEnumerable<Order>> GetOrders();
+        Task<Order> GetOrder(int id);
+        Task AddOrder(Order order);
+        Task RemoveOrder(Order order);
+        Task UpdateOrder(Order order);
     }
 }
