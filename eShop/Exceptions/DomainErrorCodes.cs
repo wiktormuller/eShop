@@ -8,5 +8,8 @@
         public static string InvalidUsername => "invalid_username";
         public static string InvalidFirstname => "invalid_firstname";
         public static string InvalidLastname => "invalid_lastname";
+        public static string InvalidName => "invalid_name";
+        public static string InvalidPrice => "invalid_price";
+        public static string InvalidDescription => "invalid_description";
     }
 }
