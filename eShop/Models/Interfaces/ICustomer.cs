@@ -1,14 +1,15 @@
 ﻿using eShop.Models.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace eShop.Models.Interfaces
 {
     public interface ICustomer
     {
-        IEnumerable<Customer> GetCustomers();
-        Customer GetCustomer(int id);
-        void AddCustomer(Customer customer);
-        void RemoveCustomer(Customer customer);
-        void UpdateCustomer(Customer customer);
+        Task<IEnumerable<Customer>> GetCustomers();
+        Task<Customer> GetCustomer(int id);
+        Task AddCustomer(Customer customer);
+        Task RemoveCustomer(Customer customer);
+        Task UpdateCustomer(Customer customer);
     }
 }

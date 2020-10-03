@@ -1,9 +1,11 @@
 ﻿using eShop.Infrastructure;
 using eShop.Models.Entities;
 using eShop.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace eShop.Services
 {
@@ -15,41 +17,42 @@ namespace eShop.Services
         {
             _context = context;
         }
-        public void AddCustomer(Customer customer)
+        public async Task AddCustomer(Customer customer)
         {
             if(customer == null)
             {
                 throw new ArgumentNullException(nameof(customer));
             }
             _context.Customers.Add(customer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public Customer GetCustomer(int id)
+        public async Task<Customer> GetCustomer(int id)
         {
-            var customer = _context.Customers.Where(c => c.CustomerId == id).FirstOrDefault();
+            var customer = await _context.Customers.Where(c => c.CustomerId == id).FirstOrDefaultAsync();
             return customer;
         }
 
-        public IEnumerable<Customer> GetCustomers()
+        public async Task<IEnumerable<Customer>> GetCustomers()
         {
-            return _context.Customers;
+            var customers = await _context.Customers.ToListAsync();
+            return customers;
         }
 
-        public void RemoveCustomer(Customer customer)
+        public async Task RemoveCustomer(Customer customer)
         {
             if (customer == null)
             {
                 throw new ArgumentNullException(nameof(customer));
             }
             _context.Customers.Remove(customer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateCustomer(Customer customer)
+        public async Task UpdateCustomer(Customer customer)
         {
            _context.Update(customer);
-           _context.SaveChanges();
+           await _context.SaveChangesAsync();
         }
     }
 }
