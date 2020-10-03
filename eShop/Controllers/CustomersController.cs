@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace eShop.Controllers
 {
@@ -22,9 +23,11 @@ namespace eShop.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Customer>> GetCustomers()
+        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
         {
-            var customers = _customerService.GetCustomers().Select(c =>
+            var models = await _customerService.GetCustomers();
+
+            var customers = models.Select(c =>
                 new CustomerReadDTO()
                 {
                     CustomerId = c.CustomerId,
@@ -37,9 +40,9 @@ namespace eShop.Controllers
         }
 
         [HttpGet("{id}", Name = "GetCustomer")]
-        public ActionResult<Customer> GetCustomer(int id)
+        public async Task<ActionResult<Customer>> GetCustomer(int id)
         {
-            var customer = _customerService.GetCustomer(id);
+            var customer = await _customerService.GetCustomer(id);
             var model = new CustomerReadDTO()
             {
                 CustomerId = customer.CustomerId,
@@ -51,7 +54,7 @@ namespace eShop.Controllers
         }
 
         [HttpPost]
-        public ActionResult<CustomerReadDTO> CreateCustomer([FromBody] CustomerCreateDTO customerCreateDto) //Return type is CustomerReadDTO as a HTTP response
+        public async Task<ActionResult<CustomerReadDTO>> CreateCustomer([FromBody] CustomerCreateDTO customerCreateDto) //Return type is CustomerReadDTO as a HTTP response
         {
             var model = new Customer
             (
@@ -60,7 +63,7 @@ namespace eShop.Controllers
                 customerCreateDto.LastName,
                 customerCreateDto.Email
             );
-            _customerService.AddCustomer(model);
+            await _customerService.AddCustomer(model);
 
             var commandReadDto = new CustomerReadDTO
             {
@@ -74,9 +77,9 @@ namespace eShop.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateCustomer(int id, CustomerUpdateDTO updatedCustomer)
+        public async Task<ActionResult> UpdateCustomer(int id, CustomerUpdateDTO updatedCustomer)
         {
-            var customerModelFromRepo = _customerService.GetCustomer(id);
+            var customerModelFromRepo = await _customerService.GetCustomer(id);
             if(customerModelFromRepo == null)
             {
                 return NotFound();
@@ -86,14 +89,14 @@ namespace eShop.Controllers
             customerModelFromRepo.SetLastName(updatedCustomer.LastName);
             customerModelFromRepo.SetEmail(updatedCustomer.Email);
 
-            _customerService.UpdateCustomer(customerModelFromRepo);
+            await _customerService.UpdateCustomer(customerModelFromRepo);
             return NoContent();
         }
 
         [HttpPatch("{id}")]
-        public ActionResult PartialUpdateCustomer(int id, JsonPatchDocument<CustomerUpdateDTO> patchDoc)
+        public async Task<ActionResult> PartialUpdateCustomer(int id, JsonPatchDocument<CustomerUpdateDTO> patchDoc)
         {
-            var customerModelFromRepo = _customerService.GetCustomer(id);
+            var customerModelFromRepo = await _customerService.GetCustomer(id);
             if(customerModelFromRepo == null)
             {
                 return NotFound();
@@ -117,20 +120,20 @@ namespace eShop.Controllers
             customerModelFromRepo.SetLastName(customerToPatch.LastName);
             customerModelFromRepo.SetEmail(customerToPatch.Email);
 
-            _customerService.UpdateCustomer(customerModelFromRepo);
+            await _customerService.UpdateCustomer(customerModelFromRepo);
 
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<Customer> DeleteCustomer(int id)
+        public async Task<ActionResult<Customer>> DeleteCustomer(int id)
         {
-            var customer = _customerService.GetCustomer(id);
+            var customer = await _customerService.GetCustomer(id);
             if(customer == null)
             {
                 return NotFound();
             }
-            _customerService.RemoveCustomer(customer);
+            await _customerService.RemoveCustomer(customer);
             return NoContent();
         }
     }

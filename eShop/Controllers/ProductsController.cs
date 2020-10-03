@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using eShop.DTO;
 using eShop.Models.Entities;
 using eShop.Models.Interfaces;
@@ -20,9 +21,11 @@ namespace eShop.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductReadDTO>> GetProducts()
+        public async Task<ActionResult<IEnumerable<ProductReadDTO>>> GetProducts()
         {
-            var products = _productService.GetProducts().Select(p =>
+            var models = await _productService.GetProducts();
+            
+            var products = models.Select(p =>
                 new ProductReadDTO()
                 {
                     Name = p.Name,
@@ -35,9 +38,9 @@ namespace eShop.Controllers
         }
 
         [HttpGet("{id}", Name = "GetProduct")]
-        public ActionResult<Product> GetProduct(int id)
+        public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = _productService.GetProduct(id);
+            var product = await _productService.GetProduct(id);
 
             var model = new ProductReadDTO
             {
@@ -51,7 +54,7 @@ namespace eShop.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ProductReadDTO> CreateProduct([FromBody] ProductCreateDTO productCreateDto)
+        public async Task<ActionResult<ProductReadDTO>> CreateProduct([FromBody] ProductCreateDTO productCreateDto)
         {
             var model = new Product
             (
@@ -61,7 +64,7 @@ namespace eShop.Controllers
                 productCreateDto.Color,
                 productCreateDto.Description
             );
-            _productService.AddProduct(model);
+            await _productService.AddProduct(model);
 
             var productReadDto = new ProductReadDTO
             {
@@ -75,9 +78,9 @@ namespace eShop.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateProduct(int id, Product product)
+        public async Task<ActionResult> UpdateProduct(int id, Product product)
         {
-            var productModelFromRepo = _productService.GetProduct(id);
+            var productModelFromRepo = await _productService.GetProduct(id);
             if(productModelFromRepo == null)
             {
                 return NotFound();
@@ -88,14 +91,14 @@ namespace eShop.Controllers
             productModelFromRepo.SetColor(product.Color);
             productModelFromRepo.SetDescription(product.Description);
 
-            _productService.UpdateProduct(productModelFromRepo);
+            await _productService.UpdateProduct(productModelFromRepo);
             return NoContent();
         }
 
         [HttpPatch("{id}")]
-        public ActionResult PartialUpdateProduct(int id, JsonPatchDocument<ProductUpdateDTO> patchDoc)
+        public async Task<ActionResult> PartialUpdateProduct(int id, JsonPatchDocument<ProductUpdateDTO> patchDoc)
         {
-            var productModelFromRepo = _productService.GetProduct(id);
+            var productModelFromRepo = await _productService.GetProduct(id);
             if(productModelFromRepo == null)
             {
                 return NotFound();
@@ -121,20 +124,20 @@ namespace eShop.Controllers
             productModelFromRepo.SetColor(productToPatch.Color);
             productModelFromRepo.SetDescription(productToPatch.Description);
 
-            _productService.UpdateProduct(productModelFromRepo);
+            await _productService.UpdateProduct(productModelFromRepo);
 
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<Product> DeleteProduct(int id)
+        public async Task<ActionResult<Product>> DeleteProduct(int id)
         {
-            var product = _productService.GetProduct(id);
+            var product = await _productService.GetProduct(id);
             if(product == null)
             {
                 return NotFound();
             }
-            _productService.RemoveProduct(product);
+            await _productService.RemoveProduct(product);
             return NoContent();
         }
     }

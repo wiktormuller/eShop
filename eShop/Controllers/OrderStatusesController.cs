@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using eShop.Models.Entities;
 using eShop.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -17,41 +18,41 @@ namespace eShop.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<OrderStatus>> GetOrderStatuses()
+        public async Task<ActionResult<IEnumerable<OrderStatus>>> GetOrderStatuses()
         {
-            var orderStatuses = _orderStatusService.GetOrderStatuses();
+            var orderStatuses = await _orderStatusService.GetOrderStatuses();
             return Ok(orderStatuses);
         }
 
         [HttpGet("{id}", Name = "GetOrderStatus")]
-        public ActionResult<OrderStatus> GetOrderStatus(int id)
+        public async Task<ActionResult<OrderStatus>> GetOrderStatus(int id)
         {
-            var orderStatus = _orderStatusService.GetOrderStatus(id);
+            var orderStatus = await _orderStatusService.GetOrderStatus(id);
             return Ok(orderStatus);
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateOrderStatus(int id, OrderStatus orderStatus)
+        public async Task<ActionResult> UpdateOrderStatus(int id, OrderStatus orderStatus)
         {
-            /*var orderStatusModel = _orderStatusService.GetOrderStatus(id);
+            var orderStatusModel = await _orderStatusService.GetOrderStatus(id);
             if(orderStatusModel == null)
             {
                 return NotFound();
-            }*/
+            }
 
-            _orderStatusService.UpdateOrderStatus(orderStatus);
+            await _orderStatusService.UpdateOrderStatus(orderStatus);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<OrderStatus> DeleteOrderStatus(int id)
+        public async Task<ActionResult<OrderStatus>> DeleteOrderStatus(int id)
         {
-            var orderStatus = _orderStatusService.GetOrderStatus(id);
+            var orderStatus = await _orderStatusService.GetOrderStatus(id);
             if(orderStatus == null)
             {
                 return NotFound();
             }
-            _orderStatusService.RemoveOrderStatus(orderStatus);
+            await _orderStatusService.RemoveOrderStatus(orderStatus);
             return NoContent();
         }
     }

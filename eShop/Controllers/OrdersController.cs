@@ -2,6 +2,7 @@
 using eShop.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace eShop.Controllers
 {
@@ -17,41 +18,41 @@ namespace eShop.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Order>> GetOrders()
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
-            var orders = _orderService.GetOrders();
+            var orders = await _orderService.GetOrders();
             return Ok(orders);
         }
 
         [HttpGet("{id}", Name = "GetOrder")]
-        public ActionResult<Order> GetOrder(int id)
+        public async Task<ActionResult<Order>> GetOrder(int id)
         {
-            var order = _orderService.GetOrder(id);
+            var order = await _orderService.GetOrder(id);
             return Ok(order);
         }
         
         [HttpPut("{id}")]
-        public ActionResult UpdateOrder(int id, Order order)
+        public async Task<ActionResult> UpdateOrder(int id, Order order)
         {
-            /*var orderModel = _orderService.GetOrder(id);
+            var orderModel = await _orderService.GetOrder(id);
             if(orderModel == null)
             {
                 return NotFound();
-            }*/
+            }
 
-            _orderService.UpdateOrder(order);
+            await _orderService.UpdateOrder(order);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<Order> DeleteOrder(int id)
+        public async Task<ActionResult<Order>> DeleteOrder(int id)
         {
-            var order = _orderService.GetOrder(id);
+            var order = await _orderService.GetOrder(id);
             if(order == null)
             {
                 return NotFound();
             }
-            _orderService.RemoveOrder(order);
+            await _orderService.RemoveOrder(order);
             return NoContent();
         }
     }
