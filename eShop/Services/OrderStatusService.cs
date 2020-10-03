@@ -1,9 +1,11 @@
 ﻿using eShop.Infrastructure;
 using eShop.Models.Entities;
 using eShop.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace eShop.Services
 {
@@ -16,42 +18,42 @@ namespace eShop.Services
             _context = context;
         }
 
-        public void AddOrderStatus(OrderStatus orderStatus)
+        public async Task AddOrderStatus(OrderStatus orderStatus)
         {
             if(orderStatus == null)
             {
                 throw new ArgumentNullException();
             }
             _context.OrderStatuses.Add(orderStatus);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public OrderStatus GetOrderStatus(int id)
+        public async Task<OrderStatus> GetOrderStatus(int id)
         {
-            var orderStatus = _context.OrderStatuses.Where(o => o.OrderStatusId == id).FirstOrDefault();
+            var orderStatus = await _context.OrderStatuses.Where(o => o.OrderStatusId == id).FirstOrDefaultAsync();
             return orderStatus;
         }
 
-        public IEnumerable<OrderStatus> GetOrderStatuses()
+        public async Task<IEnumerable<OrderStatus>> GetOrderStatuses()
         {
-            var orderStatuses = _context.OrderStatuses;
+            var orderStatuses = await _context.OrderStatuses.ToListAsync();
             return orderStatuses;
         }
 
-        public void RemoveOrderStatus(OrderStatus orderStatus)
+        public async Task RemoveOrderStatus(OrderStatus orderStatus)
         {
             if(orderStatus == null)
             {
                 throw new ArgumentNullException();
             }
             _context.OrderStatuses.Remove(orderStatus);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateOrderStatus(OrderStatus orderStatus)
+        public async Task UpdateOrderStatus(OrderStatus orderStatus)
         {
             _context.Update(orderStatus);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

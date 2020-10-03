@@ -1,14 +1,15 @@
 ﻿using eShop.Models.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace eShop.Models.Interfaces
 {
     public interface IOrderStatus
     {
-        IEnumerable<OrderStatus> GetOrderStatuses();
-        OrderStatus GetOrderStatus(int id);
-        void AddOrderStatus(OrderStatus orderStatus);
-        void RemoveOrderStatus(OrderStatus orderStatus);
-        void UpdateOrderStatus(OrderStatus orderStatus);
+        Task<IEnumerable<OrderStatus>> GetOrderStatuses();
+        Task<OrderStatus> GetOrderStatus(int id);
+        Task AddOrderStatus(OrderStatus orderStatus);
+        Task RemoveOrderStatus(OrderStatus orderStatus);
+        Task UpdateOrderStatus(OrderStatus orderStatus);
     }
 }
