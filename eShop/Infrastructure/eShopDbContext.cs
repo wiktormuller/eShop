@@ -19,6 +19,7 @@ namespace eShop.Infrastructure
             builder.ApplyConfiguration(new OrderConfiguration());
             builder.ApplyConfiguration(new OrderStatusConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
+            //builder.ApplyConfiguration(new UserConfiguration());
             //builder.ApplyConfiguration(new AddressConfiguration());
         }
 

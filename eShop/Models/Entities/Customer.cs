@@ -1,5 +1,4 @@
 ﻿using eShop.Models.ValueObjects;
-using System;
 
 namespace eShop.Models.Entities
 {

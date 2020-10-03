@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace eShop.Models.Entities
+﻿namespace eShop.Models.Entities
 {
     public class Product
     {

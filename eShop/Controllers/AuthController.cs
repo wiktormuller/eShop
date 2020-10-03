@@ -1,6 +1,5 @@
 ﻿using System;
 using eShop.DTO;
-using eShop.Models.Entities;
 using eShop.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
