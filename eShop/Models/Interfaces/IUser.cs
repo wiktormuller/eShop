@@ -1,4 +1,4 @@
-﻿using eShop.DTO;
+﻿using eShop.Models.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,9 +6,11 @@ namespace eShop.Models.Interfaces
 {
     public interface IUser
     {
-        Task<UserDTO> GetUser(string email);
-        Task<IEnumerable<UserDTO>> GetUsers();
-        Task Register(int userId, string email, string username, string password, string role);
-        Task Login(string email, string password);
+        Task<User> GetUser(string email);
+        Task<User> GetUser(int id);
+        Task<IEnumerable<User>> GetUsers();
+        Task AddUser(User user);
+        Task RemoveUser(User user);
+        Task UpdateUser(User user);
     }
 }

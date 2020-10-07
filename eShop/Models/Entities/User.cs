@@ -1,4 +1,5 @@
 ﻿using eShop.Exceptions;
+using eShop.Models.ValueObjects;
 using System;
 using System.Text.RegularExpressions;
 
@@ -9,19 +10,26 @@ namespace eShop.Models.Entities
         private readonly Regex RegexOfUsername = new Regex("^(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9._.-]+(?<![_.-])$");
 
         public int UserId { get; protected set; }
-        public string Email { get; protected set; }
+        public string Email { get; protected set; } //Should it be other type with validation?
         public string Password { get; protected set; }
         public string Salt { get; protected set; }
         public string Username { get; protected set; }
-        public string FullName { get; protected set; }
+        public string Firstname { get; protected set; }
+        public string Lastname { get; protected set; }
         public string Role { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
         public DateTime UpdatedAt { get; protected set; }
 
-        public User(int userId, string email, string username, string role, string password, string salt)
+        public Address Address { get; protected set; }
+        public int? OrderId { get; protected set; }
+        public Order Order { get; protected set; }
+
+        public User(int userId, string email, string firstname, string lastname, string username, string role, string password, string salt)
         {
             UserId = userId;
             SetEmail(email);
+            SetFirstname(firstname);
+            SetLastname(lastname);
             SetUsername(username);
             SetRole(role);
             SetPassword(password, salt);
@@ -58,6 +66,24 @@ namespace eShop.Models.Entities
 
             Email = email.ToLowerInvariant();
             UpdatedAt = DateTime.UtcNow;
+        }
+
+        public void SetLastname(string lastName)
+        {
+            if (string.IsNullOrEmpty(lastName))
+            {
+                throw new DomainException(DomainErrorCodes.InvalidLastname, "Lastname is invalid");
+            }
+            Lastname = lastName;
+        }
+
+        public void SetFirstname(string firstName)
+        {
+            if (string.IsNullOrEmpty(firstName))
+            {
+                throw new DomainException(DomainErrorCodes.InvalidFirstname, "Firstname is invalid.");
+            }
+            Firstname = firstName;
         }
 
         public void SetRole(string role)

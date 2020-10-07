@@ -64,10 +64,10 @@ namespace eShop
             services.AddAuthorization();
             //services.AddAuthorization(x => x.AddPolicy("Admin", p => p.RequireRole("Admin")));
 
-            services.AddScoped<ICustomer, CustomerService>();
             services.AddScoped<IOrder, OrderService>();
             services.AddScoped<IOrderStatus, OrderStatusService>();
             services.AddScoped<IProduct, ProductService>();
+            services.AddScoped<IAuth, AuthService>();
 
             services.AddScoped<IJwt, JwtService>();
             services.AddScoped<IUser, UserService>();

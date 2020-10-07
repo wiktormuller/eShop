@@ -10,13 +10,15 @@ namespace eShop.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IUser _userService;
+        private readonly IAuth _authService;
         private readonly IJwt _jwtService;
+        private readonly IUser _userService;
 
-        public AuthController(IUser userService, IJwt jwtService)
+        public AuthController(IAuth authService, IJwt jwtService, IUser userService)
         {
-            _userService = userService;
+            _authService = authService;
             _jwtService = jwtService;
+            _userService = userService;
         }
 
         [HttpPost("login")]
@@ -24,9 +26,9 @@ namespace eShop.Controllers
         {
             loginDto.TokenId = Guid.NewGuid();
 
-            await _userService.Login(loginDto.Email, loginDto.Password);
+            await _authService.Login(loginDto.Email, loginDto.Password);
             var user = await _userService.GetUser(loginDto.Email);
-            var jwt = _jwtService.CreateToken(user.Id, user.Role);
+            var jwt = _jwtService.CreateToken(user.UserId, user.Role);
 
             return Ok(jwt);
         }
@@ -34,7 +36,7 @@ namespace eShop.Controllers
         [HttpPost("register")]
         public async Task<ActionResult> Register(RegisterDTO registerDto)
         {
-            await _userService.Register(registerDto.UserId, registerDto.Email, registerDto.Username, registerDto.Password, registerDto.Role);
+            await _authService.Register(registerDto.UserId, registerDto.Email, registerDto.Firstname, registerDto.Lastname, registerDto.Username, registerDto.Password, registerDto.Role);
             var createdUser = _userService.GetUser(registerDto.Email);
 
             return Ok(createdUser);
