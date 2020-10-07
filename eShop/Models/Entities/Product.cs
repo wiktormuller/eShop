@@ -1,5 +1,4 @@
-﻿using eShop.Exceptions;
-using System;
+﻿using System;
 
 namespace eShop.Models.Entities
 {
@@ -29,7 +28,7 @@ namespace eShop.Models.Entities
         {
             if(string.IsNullOrEmpty(description))
             {
-                throw new DomainException(DomainErrorCodes.InvalidDescription, "Invalid description.");
+                throw new ArgumentNullException();
             }
             Description = description;
         }
@@ -38,7 +37,7 @@ namespace eShop.Models.Entities
         {
             if(price <= 0)
             {
-                throw new DomainException(DomainErrorCodes.InvalidPrice, "Invalid price");
+                throw new ArgumentException();
             }
             Price = price;
         }
@@ -47,7 +46,7 @@ namespace eShop.Models.Entities
         {
             if(string.IsNullOrEmpty(name))
             {
-                throw new DomainException(DomainErrorCodes.InvalidName, "Invalid product name.");
+                throw new ArgumentNullException();
             }
             Name = name;
         }

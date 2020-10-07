@@ -1,5 +1,4 @@
-﻿using eShop.Exceptions;
-using eShop.Models.ValueObjects;
+﻿using eShop.Models.ValueObjects;
 using System;
 using System.Text.RegularExpressions;
 
@@ -40,12 +39,12 @@ namespace eShop.Models.Entities
         {
             if(!RegexOfUsername.IsMatch(username))
             {
-                throw new DomainException(DomainErrorCodes.InvalidUsername, "Username is inalid");
+                throw new ArgumentException();
             }
 
             if(string.IsNullOrEmpty(username))
             {
-                throw new DomainException(DomainErrorCodes.InvalidUsername, "Username is invalid");
+                throw new ArgumentNullException();
             }
 
             Username = username.ToLowerInvariant();
@@ -56,7 +55,7 @@ namespace eShop.Models.Entities
         {
             if(string.IsNullOrEmpty(email))
             {
-                throw new DomainException(DomainErrorCodes.InvalidEmail, "Email cannot be empty");
+                throw new ArgumentNullException();
             }
 
             if(Email == email)
@@ -72,7 +71,7 @@ namespace eShop.Models.Entities
         {
             if (string.IsNullOrEmpty(lastName))
             {
-                throw new DomainException(DomainErrorCodes.InvalidLastname, "Lastname is invalid");
+                throw new ArgumentNullException();
             }
             Lastname = lastName;
         }
@@ -81,7 +80,7 @@ namespace eShop.Models.Entities
         {
             if (string.IsNullOrEmpty(firstName))
             {
-                throw new DomainException(DomainErrorCodes.InvalidFirstname, "Firstname is invalid.");
+                throw new ArgumentNullException();
             }
             Firstname = firstName;
         }
@@ -90,7 +89,7 @@ namespace eShop.Models.Entities
         {
             if(string.IsNullOrWhiteSpace(role))
             {
-                throw new DomainException(DomainErrorCodes.InvalidRole, "Role cannot be empty");
+                throw new ArgumentNullException();
             }
 
             if(Role == role)
@@ -106,22 +105,22 @@ namespace eShop.Models.Entities
         {
             if(string.IsNullOrWhiteSpace(password))
             {
-                throw new DomainException(DomainErrorCodes.InvalidPassword, "Password cannot be empty");
+                throw new ArgumentNullException();
             }
 
             if(string.IsNullOrWhiteSpace(salt))
             {
-                throw new DomainException(DomainErrorCodes.InvalidPassword, "Salt cannot be empty");
+                throw new ArgumentNullException();
             }
 
             if(password.Length < 4)
             {
-                throw new DomainException(DomainErrorCodes.InvalidPassword, "Password must contain at least 4 characters");
+                throw new ArgumentException();
             }
 
             if(password.Length > 100)
             {
-                throw new DomainException(DomainErrorCodes.InvalidPassword, "Password cannot contain more than 100 characters");
+                throw new ArgumentException();
             }
 
             if(Password == password)

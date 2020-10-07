@@ -97,8 +97,6 @@ namespace eShop
 
             app.UseAuthorization();
 
-            app.UseExceptionHandler();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -1,8 +1,8 @@
-﻿using eShop.Exceptions;
-using eShop.Infrastructure;
+﻿using eShop.Infrastructure;
 using eShop.Models.Entities;
 using eShop.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 
 namespace eShop.Services
@@ -23,7 +23,7 @@ namespace eShop.Services
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (user == null)
             {
-                throw new ServiceException(ServiceErrorCodes.InvalidCredentials, "Invalid credentials");
+                throw new ArgumentNullException();
             }
 
             var hash = _encrypter.GetHash(password, user.Salt);
@@ -31,7 +31,7 @@ namespace eShop.Services
             {
                 return;
             }
-            throw new ServiceException(ServiceErrorCodes.InvalidCredentials, "Invalid credentials");
+            throw new ArgumentException();
         }
 
         public async Task Register(int userId, string email, string firstname, string lastname, string username, string password, string role)
@@ -39,7 +39,7 @@ namespace eShop.Services
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (user != null)
             {
-                throw new ServiceException(ServiceErrorCodes.EmailInUse, $"User with email: '{email}' already exists.");
+                throw new InvalidOperationException();
             }
 
             var salt = _encrypter.GetSalt(password);
