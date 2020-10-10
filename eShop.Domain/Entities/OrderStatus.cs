@@ -1,6 +1,6 @@
-﻿using System;
+﻿using eShop.Domain.Enums;
 
-namespace eShop.Models.Entities
+namespace eShop.Domain.Entities
 {
     public class OrderStatus
     {

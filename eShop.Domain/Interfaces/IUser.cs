@@ -1,8 +1,8 @@
-﻿using eShop.Models.Entities;
+﻿using eShop.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace eShop.Models.Interfaces
+namespace eShop.Domain.Interfaces
 {
     public interface IUser
     {

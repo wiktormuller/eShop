@@ -1,6 +1,7 @@
-﻿using System;
+﻿using eShop.Domain.Enums;
+using System;
 
-namespace eShop.Models.Entities
+namespace eShop.Domain.Entities
 {
     public class Product
     {

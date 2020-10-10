@@ -1,4 +1,4 @@
-﻿using eShop.Models.ValueObjects;
+﻿using eShop.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

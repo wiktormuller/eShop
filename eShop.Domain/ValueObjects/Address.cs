@@ -1,10 +1,10 @@
-﻿using eShop.Models.Entities;
+﻿using eShop.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace eShop.Models.ValueObjects
+namespace eShop.Domain.ValueObjects
 {
     public class Address
     {

@@ -1,6 +1,6 @@
 ﻿using eShop.DTO;
 
-namespace eShop.Models.Interfaces
+namespace eShop.Domain.Interfaces
 {
     public interface IJwt
     {

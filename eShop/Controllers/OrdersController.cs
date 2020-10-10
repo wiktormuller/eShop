@@ -1,5 +1,5 @@
-﻿using eShop.Models.Entities;
-using eShop.Models.Interfaces;
+﻿using eShop.Domain.Entities;
+using eShop.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;

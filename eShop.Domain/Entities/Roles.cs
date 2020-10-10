@@ -1,4 +1,4 @@
-﻿namespace eShop.Models.Entities
+﻿namespace eShop.Domain.Entities
 {
     public class Roles
     {

@@ -1,4 +1,4 @@
-﻿namespace eShop.Models
+﻿namespace eShop.Domain.Enums
 {
     public enum Status
     {

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace eShop.Models.Interfaces
+namespace eShop.Domain.Interfaces
 {
     public interface IAuth
     {

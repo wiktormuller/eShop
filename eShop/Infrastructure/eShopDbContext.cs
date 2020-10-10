@@ -1,5 +1,5 @@
 ﻿using eShop.Infrastructure.Configuration;
-using eShop.Models.Entities;
+using eShop.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace eShop.Infrastructure

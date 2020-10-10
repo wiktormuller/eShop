@@ -1,8 +1,8 @@
-﻿using eShop.Models.ValueObjects;
+﻿using eShop.Domain.ValueObjects;
 using System;
 using System.Text.RegularExpressions;
 
-namespace eShop.Models.Entities
+namespace eShop.Domain.Entities
 {
     public class User
     {

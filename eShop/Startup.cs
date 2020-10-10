@@ -1,5 +1,5 @@
 using eShop.Infrastructure;
-using eShop.Models.Interfaces;
+using eShop.Domain.Interfaces;
 using eShop.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;

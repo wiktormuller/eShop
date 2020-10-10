@@ -1,6 +1,6 @@
 ﻿using eShop.Infrastructure;
-using eShop.Models.Entities;
-using eShop.Models.Interfaces;
+using eShop.Domain.Entities;
+using eShop.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

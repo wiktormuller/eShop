@@ -1,6 +1,6 @@
 ﻿using eShop.DTO;
 using eShop.Extensions;
-using eShop.Models.Interfaces;
+using eShop.Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;

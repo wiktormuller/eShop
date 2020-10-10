@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using eShop.DTO;
-using eShop.Models.Interfaces;
+using eShop.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eShop.Controllers

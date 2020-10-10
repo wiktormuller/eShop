@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using eShop.Models.Entities;
-using eShop.Models.Interfaces;
+using eShop.Domain.Entities;
+using eShop.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eShop.Controllers

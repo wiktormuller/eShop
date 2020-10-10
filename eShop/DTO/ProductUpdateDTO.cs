@@ -1,4 +1,4 @@
-﻿using eShop.Models;
+﻿using eShop.Domain.Enums;
 
 namespace eShop.DTO
 {
