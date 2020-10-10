@@ -1,9 +1,9 @@
-﻿using eShop.DTO;
+﻿using eShop.Domain.Entities;
 
 namespace eShop.Domain.Interfaces
 {
     public interface IJwt
     {
-        JwtDTO CreateToken(int userId, string role);
+        Jwt CreateToken(int userId, string role);
     }
 }

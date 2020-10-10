@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using eShop.DTO;
+using eShop.Infrastructure.DTO;
 using eShop.Domain.Entities;
 using eShop.Domain.Interfaces;
 using Microsoft.AspNetCore.JsonPatch;

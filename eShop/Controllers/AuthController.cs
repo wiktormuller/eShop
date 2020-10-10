@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using eShop.DTO;
+using eShop.Infrastructure.DTO;
 using eShop.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
