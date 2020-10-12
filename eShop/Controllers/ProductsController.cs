@@ -68,6 +68,7 @@ namespace eShop.Controllers
 
             var productReadDto = new ProductReadDTO
             {
+                ProductId = model.ProductId,
                 Name = model.Name,
                 Price = model.Price,
                 Color = model.Color,

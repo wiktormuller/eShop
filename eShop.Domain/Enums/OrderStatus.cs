@@ -1,6 +1,6 @@
 ﻿namespace eShop.Domain.Enums
 {
-    public enum Status
+    public enum OrderStatus : byte
     {
         Initiated,
         Canceled,

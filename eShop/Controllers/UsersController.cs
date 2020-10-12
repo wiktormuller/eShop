@@ -13,11 +13,11 @@ namespace eShop.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly IUser _userService;
 
-        public UserController(IUser userService)
+        public UsersController(IUser userService)
         {
             _userService = userService;
         }
