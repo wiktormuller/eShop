@@ -52,6 +52,10 @@ namespace eShop.Infrastructure.Services
 
         public async Task UpdateOrder(Order order)
         {
+            if(order == null)
+            {
+                throw new ArgumentNullException();
+            }
             _context.Update(order);
             await _context.SaveChangesAsync();
         }

@@ -131,7 +131,7 @@ namespace eShop.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Product>> DeleteProduct(int id)
+        public async Task<ActionResult> DeleteProduct(int id)
         {
             var product = await _productService.GetProduct(id);
             if(product == null)

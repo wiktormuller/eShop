@@ -26,7 +26,7 @@ namespace eShop.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Order>> DeleteOrder(int id)
+        public async Task<ActionResult> DeleteOrder(int id)
         {
             var order = await _orderService.GetOrder(id);
             if(order == null)

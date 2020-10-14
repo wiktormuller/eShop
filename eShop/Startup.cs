@@ -67,6 +67,7 @@ namespace eShop
             services.AddScoped<IOrder, OrderService>();
             services.AddScoped<IProduct, ProductService>();
             services.AddScoped<IAuth, AuthService>();
+            services.AddScoped<IShoppingCart, ShoppingCartService>();
 
             services.AddScoped<IJwt, JwtService>();
             services.AddScoped<IUser, UserService>();

@@ -132,7 +132,7 @@ namespace eShop.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> DeleteUser(int id)
+        public async Task<ActionResult> DeleteUser(int id)
         {
             var customer = await _userService.GetUser(id);
             if(customer == null)
