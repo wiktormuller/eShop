@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QIXKZoyMoFP+Nrn++KLsnxsTRk4SUMhQCprwhtAMC4wH5xp58z8TGlRgWgU0ziQCqFlEP3/Ww5D1e0iRTEjT5g==",
+  "dgSpecHash": "knUol7nlHPa6WCnsyMA1Kkf7abrv9XZ0MrEOTeiBxI86BxRy3qxQ8s/C2EQHEOObCv8ibzXlWa9epn2uZcmoog==",
   "success": true,
   "projectFilePath": "C:\\Users\\Wiktor\\Desktop\\eShop\\eShop\\eShop.csproj",
   "expectedPackageFiles": [
@@ -16,6 +16,7 @@
     "C:\\Users\\Wiktor\\.nuget\\packages\\microsoft.entityframeworkcore\\3.1.8\\microsoft.entityframeworkcore.3.1.8.nupkg.sha512",
     "C:\\Users\\Wiktor\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\3.1.8\\microsoft.entityframeworkcore.abstractions.3.1.8.nupkg.sha512",
     "C:\\Users\\Wiktor\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\3.1.8\\microsoft.entityframeworkcore.analyzers.3.1.8.nupkg.sha512",
+    "C:\\Users\\Wiktor\\.nuget\\packages\\microsoft.entityframeworkcore.design\\3.1.8\\microsoft.entityframeworkcore.design.3.1.8.nupkg.sha512",
     "C:\\Users\\Wiktor\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.8\\microsoft.entityframeworkcore.relational.3.1.8.nupkg.sha512",
     "C:\\Users\\Wiktor\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.8\\microsoft.entityframeworkcore.sqlserver.3.1.8.nupkg.sha512",
     "C:\\Users\\Wiktor\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",

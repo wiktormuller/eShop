@@ -1,11 +1,9 @@
-﻿namespace eShop.Domain.Entities
+﻿namespace eShop.Infrastructure.DTO
 {
-    public class CartItem
+    public class CartItemCreateDTO
     {
-        public int CartItemId { get; set; }
         public int ProductId { get; set; }
         public int Quantity { get; set; }
-
         public int ShoppingCartId { get; set; }
     }
 }

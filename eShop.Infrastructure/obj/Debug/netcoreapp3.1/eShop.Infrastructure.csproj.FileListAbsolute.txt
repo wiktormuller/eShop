@@ -2,7 +2,6 @@ C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\bin\Debug\netcoreapp3.1\eShop
 C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\obj\Debug\netcoreapp3.1\eShop.Infrastructure.csprojAssemblyReference.cache
 C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\obj\Debug\netcoreapp3.1\eShop.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\obj\Debug\netcoreapp3.1\eShop.Infrastructure.AssemblyInfo.cs
-C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\obj\Debug\netcoreapp3.1\eShop.Infrastructure.csproj.CoreCompileInputs.cache
 C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\bin\Debug\netcoreapp3.1\eShop.Infrastructure.deps.json
 C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\bin\Debug\netcoreapp3.1\eShop.Infrastructure.dll
 C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\bin\Debug\netcoreapp3.1\eShop.Domain.pdb
@@ -10,3 +9,7 @@ C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\obj\Debug\netcoreapp3.1\eShop
 C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\bin\Debug\netcoreapp3.1\eShop.Infrastructure.pdb
 C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\obj\Debug\netcoreapp3.1\eShop.Infrastructure.dll
 C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\obj\Debug\netcoreapp3.1\eShop.Infrastructure.pdb
+C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\bin\Debug\netcoreapp3.1\eShop.Infrastructure.runtimeconfig.json
+C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\bin\Debug\netcoreapp3.1\eShop.Infrastructure.runtimeconfig.dev.json
+C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\obj\Debug\netcoreapp3.1\eShop.Infrastructure.genruntimeconfig.cache
+C:\Users\Wiktor\Desktop\eShop\eShop.Infrastructure\obj\Debug\netcoreapp3.1\eShop.Infrastructure.csproj.CoreCompileInputs.cache

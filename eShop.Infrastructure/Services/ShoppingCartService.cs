@@ -30,8 +30,21 @@ namespace eShop.Infrastructure.Services
 
         public async Task<ShoppingCart> GetShopingCart(int id)
         {
-            var shoppingCart = await _context.ShoppingCarts.Where(o => o.ShoppingCartId == id).FirstOrDefaultAsync();
+            var shoppingCart = await _context.ShoppingCarts.Where(o => o.ShoppingCartId == id)
+                .Include(cartItem => cartItem.CartItems)
+                .FirstOrDefaultAsync();
+
             return shoppingCart;
+        }
+
+        public async Task AddCartItem(CartItem cartItem)
+        {
+            if(cartItem == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _context.CartItems.Add(cartItem);
+            await _context.SaveChangesAsync();
         }
 
         public async Task RemoveShoppingCart(ShoppingCart shoppingCart)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using eShop.Domain.Entities;
 using eShop.Domain.Interfaces;
+using eShop.Infrastructure.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,26 +21,57 @@ namespace eShop.Controllers
             _shoppingCartService = shoppingCart;
         }
 
-        [HttpGet("{id", Name = "GetShoppingCart")]
+        [HttpGet("{id}", Name = "GetShoppingCart")]
         public async Task<ActionResult<ShoppingCartReadDTO>> GetShoppingCart(int id)
         {
-            var shoppingCart = _shoppingCartService.GetShopingCart(id);
+            var model = await _shoppingCartService.GetShopingCart(id);
+            var shoppingCart = new ShoppingCartReadDTO
+            {
+                ShoppingCartId = model.ShoppingCartId,
+                CreatedAt = model.CreatedAt,
+                UpdatedAt = model.UpdatedAt,
+                CartItems = model.CartItems
+            };
+
             return Ok(shoppingCart);
         }
 
         [HttpPost]
-        public async Task<ActionResult<ShoppingCartReadDTO>> CreateShoppingCart([FromBody] ShoppingCartCreateDTO shoppingCartCreateDTO)
+        public async Task<ActionResult<ShoppingCartReadDTO>> CreateShoppingCart(/*[FromBody] ShoppingCartCreateDTO shoppingCartCreateDto*/)
         {
-            var model = new ShoppingCart
-            (
-                
-            );
+            var model = new ShoppingCart();
+            await _shoppingCartService.AddShoppingCart(model);
+
+            var shoppingCartReadDto = new ShoppingCartReadDTO
+            {
+                ShoppingCartId = model.ShoppingCartId,
+                CreatedAt = model.CreatedAt,
+                UpdatedAt = model.UpdatedAt,
+                CartItems = model.CartItems
+            };
+            
+            return CreatedAtRoute(nameof(GetShoppingCart), new { Id = shoppingCartReadDto.ShoppingCartId }, shoppingCartReadDto);
         }
 
         [HttpPost("{id}", Name = "PopulateShoppingCart")]
-        public async Task<ActionResult<ShoppingCartReadDTO>> PopulateShoppingCart([FromBody] ShoppingCartPopulateDTO shoppingCartPopulateDTO)
+        public async Task<ActionResult<CartItemReadDTO>> PopulateShoppingCart([FromBody] CartItemCreateDTO cartItemCreateDto)
         {
+            var model = new CartItem
+            {
+                ProductId = cartItemCreateDto.ProductId,
+                Quantity = cartItemCreateDto.Quantity,
+                ShoppingCartId = cartItemCreateDto.ShoppingCartId
+            };
+            await _shoppingCartService.AddCartItem(model);
 
+            var cartItemReadDto = new CartItemReadDTO
+            {
+                CartItemId = model.CartItemId,
+                ProductId = model.ProductId,
+                Quantity = model.Quantity
+            };
+
+            return CreatedAtRoute(nameof(GetShoppingCart), new { Id = cartItemReadDto.CartItemId }, cartItemReadDto);
         }
 
         [HttpDelete("{id}")]
@@ -48,7 +80,7 @@ namespace eShop.Controllers
             var shoppingCart = await _shoppingCartService.GetShopingCart(id);
             if(shoppingCart == null)
             {
-                return NotFound()
+                return NotFound();
             }
             await _shoppingCartService.RemoveShoppingCart(shoppingCart);
             return NoContent();
