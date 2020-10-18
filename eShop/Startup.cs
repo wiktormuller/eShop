@@ -64,14 +64,15 @@ namespace eShop
             services.AddAuthorization();
             //services.AddAuthorization(x => x.AddPolicy("Admin", p => p.RequireRole("Admin")));
 
+            services.AddScoped<IAuth, AuthService>();
+            services.AddScoped<ICartItem, CartItemService>();
             services.AddScoped<IOrder, OrderService>();
             services.AddScoped<IProduct, ProductService>();
-            services.AddScoped<IAuth, AuthService>();
             services.AddScoped<IShoppingCart, ShoppingCartService>();
-
-            services.AddScoped<IJwt, JwtService>();
             services.AddScoped<IUser, UserService>();
+
             services.AddScoped<IEncrypter, Encrypter>();
+            services.AddScoped<IJwt, JwtService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

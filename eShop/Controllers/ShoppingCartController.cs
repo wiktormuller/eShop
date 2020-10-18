@@ -16,9 +16,9 @@ namespace eShop.Controllers
     {
         public readonly IShoppingCart _shoppingCartService;
 
-        public ShoppingCartController(IShoppingCart shoppingCart)
+        public ShoppingCartController(IShoppingCart shoppingCartService)
         {
-            _shoppingCartService = shoppingCart;
+            _shoppingCartService = shoppingCartService;
         }
 
         [HttpGet("{id}", Name = "GetShoppingCart")]
@@ -51,27 +51,6 @@ namespace eShop.Controllers
             };
             
             return CreatedAtRoute(nameof(GetShoppingCart), new { Id = shoppingCartReadDto.ShoppingCartId }, shoppingCartReadDto);
-        }
-
-        [HttpPost("{id}", Name = "PopulateShoppingCart")]
-        public async Task<ActionResult<CartItemReadDTO>> PopulateShoppingCart([FromBody] CartItemCreateDTO cartItemCreateDto)
-        {
-            var model = new CartItem
-            {
-                ProductId = cartItemCreateDto.ProductId,
-                Quantity = cartItemCreateDto.Quantity,
-                ShoppingCartId = cartItemCreateDto.ShoppingCartId
-            };
-            await _shoppingCartService.AddCartItem(model);
-
-            var cartItemReadDto = new CartItemReadDTO
-            {
-                CartItemId = model.CartItemId,
-                ProductId = model.ProductId,
-                Quantity = model.Quantity
-            };
-
-            return CreatedAtRoute(nameof(GetShoppingCart), new { Id = cartItemReadDto.CartItemId }, cartItemReadDto);
         }
 
         [HttpDelete("{id}")]

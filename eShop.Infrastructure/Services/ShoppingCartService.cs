@@ -37,16 +37,6 @@ namespace eShop.Infrastructure.Services
             return shoppingCart;
         }
 
-        public async Task AddCartItem(CartItem cartItem)
-        {
-            if(cartItem == null)
-            {
-                throw new ArgumentNullException();
-            }
-            _context.CartItems.Add(cartItem);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task RemoveShoppingCart(ShoppingCart shoppingCart)
         {
             if(shoppingCart == null)
