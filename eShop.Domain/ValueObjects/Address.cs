@@ -1,14 +1,10 @@
 ﻿using eShop.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace eShop.Domain.ValueObjects
 {
     public class Address
     {
-        public string AddressId { get; private set; }
+        public int AddressId { get; private set; }
         public string Street { get; private set; }
         public string City { get; private set; }
         public string Country { get; private set; }
