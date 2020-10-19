@@ -1,6 +1,5 @@
 ﻿using eShop.Domain.ValueObjects;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -10,20 +9,20 @@ namespace eShop.Domain.Entities
     {
         private readonly Regex RegexOfUsername = new Regex("^(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9._.-]+(?<![_.-])$");
 
-        public int UserId { get; protected set; }
-        public string Email { get; protected set; } //Should it be other type with validation?
-        public string Password { get; protected set; }
-        public string Salt { get; protected set; }
-        public string Username { get; protected set; }
-        public string Firstname { get; protected set; }
-        public string Lastname { get; protected set; }
-        public string Role { get; protected set; }
-        public DateTime CreatedAt { get; protected set; }
-        public DateTime UpdatedAt { get; protected set; }
+        public int UserId { get; private set; }
+        public string Email { get; private set; } //Should it be other type with validation?
+        public string Password { get; private set; }
+        public string Salt { get; private set; }
+        public string Username { get; private set; }
+        public string Firstname { get; private set; }
+        public string Lastname { get; private set; }
+        public string Role { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+        public DateTime UpdatedAt { get; private set; }
 
-        public Address Address { get; protected set; }
-
-        public IEnumerable<Order> Orders { get; protected set; }
+        //Relations
+        public Address Address { get; private set; }
+        public IEnumerable<Order> Orders { get; private set; }
 
         public User(int userId, string email, string firstname, string lastname, string username, string role, string password, string salt)
         {

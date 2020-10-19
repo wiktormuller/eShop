@@ -9,9 +9,9 @@ namespace eShop.Domain.Entities
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
 
+        //Relations
         public int OrderId { get; private set; }
         public Order Order { get; private set; }
-
         public IEnumerable<CartItem> CartItems { get; private set; }
 
         public ShoppingCart()

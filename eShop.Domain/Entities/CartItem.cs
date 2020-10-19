@@ -2,11 +2,12 @@
 {
     public class CartItem
     {
-        public int CartItemId { get; set; }
-        public int ProductId { get; set; }
-        public int Quantity { get; set; }
+        public int CartItemId { get; private set; }
+        public int ProductId { get; private set; }
+        public int Quantity { get; private set; }
 
-        public int ShoppingCartId { get; set; }
-        public ShoppingCart ShoppingCart { get; set; }
+        //Relations
+        public int ShoppingCartId { get; private set; }
+        public ShoppingCart ShoppingCart { get; private set; }
     }
 }

@@ -5,11 +5,11 @@ namespace eShop.Domain.Entities
 {
     public class Product
     {
-        public int ProductId { get;  protected set; }
-        public string Name { get; protected set; }
-        public decimal Price { get; protected set; }
-        public ProductColor Color { get; protected set; }
-        public string Description { get; protected set; }
+        public int ProductId { get;  private set; }
+        public string Name { get; private set; }
+        public decimal Price { get; private set; }
+        public ProductColor Color { get; private set; }
+        public string Description { get; private set; }
 
         public Product(int productId, string name, decimal price, ProductColor color, string description)
         {
