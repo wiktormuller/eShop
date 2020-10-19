@@ -10,8 +10,8 @@ using eShop.Infrastructure;
 namespace eShop.Infrastructure.Migrations
 {
     [DbContext(typeof(eShopDbContext))]
-    [Migration("20201017134316_RepairRelationShoppingCartToCartItem")]
-    partial class RepairRelationShoppingCartToCartItem
+    [Migration("20201019201057_NewDbSchema")]
+    partial class NewDbSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,7 +34,7 @@ namespace eShop.Infrastructure.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ShoppingCartId")
+                    b.Property<int>("ShoppingCartId")
                         .HasColumnType("int");
 
                     b.HasKey("CartItemId");
@@ -57,12 +57,12 @@ namespace eShop.Infrastructure.Migrations
                     b.Property<byte>("OrderStatus")
                         .HasColumnType("tinyint");
 
-                    b.Property<int?>("ShoppingCartId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("ShoppingCartId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -105,10 +105,16 @@ namespace eShop.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ShoppingCartId");
+
+                    b.HasIndex("OrderId")
+                        .IsUnique();
 
                     b.ToTable("ShoppingCarts");
                 });
@@ -133,9 +139,6 @@ namespace eShop.Infrastructure.Migrations
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -157,17 +160,15 @@ namespace eShop.Infrastructure.Migrations
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("OrderId")
-                        .IsUnique()
-                        .HasFilter("[OrderId] IS NOT NULL");
-
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("eShop.Domain.ValueObjects.Address", b =>
                 {
-                    b.Property<string>("AddressId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("AddressId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -196,21 +197,27 @@ namespace eShop.Infrastructure.Migrations
                 {
                     b.HasOne("eShop.Domain.Entities.ShoppingCart", "ShoppingCart")
                         .WithMany("CartItems")
-                        .HasForeignKey("ShoppingCartId");
+                        .HasForeignKey("ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("eShop.Domain.Entities.Order", b =>
                 {
-                    b.HasOne("eShop.Domain.Entities.ShoppingCart", "ShoppingCart")
-                        .WithMany()
-                        .HasForeignKey("ShoppingCartId");
+                    b.HasOne("eShop.Domain.Entities.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("eShop.Domain.Entities.User", b =>
+            modelBuilder.Entity("eShop.Domain.Entities.ShoppingCart", b =>
                 {
                     b.HasOne("eShop.Domain.Entities.Order", "Order")
-                        .WithOne("User")
-                        .HasForeignKey("eShop.Domain.Entities.User", "OrderId");
+                        .WithOne("ShoppingCart")
+                        .HasForeignKey("eShop.Domain.Entities.ShoppingCart", "OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("eShop.Domain.ValueObjects.Address", b =>

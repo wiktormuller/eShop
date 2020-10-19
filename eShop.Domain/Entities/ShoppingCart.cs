@@ -8,6 +8,10 @@ namespace eShop.Domain.Entities
         public int ShoppingCartId { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
+
+        public int OrderId { get; private set; }
+        public Order Order { get; private set; }
+
         public IEnumerable<CartItem> CartItems { get; private set; }
 
         public ShoppingCart()

@@ -1,4 +1,4 @@
-﻿namespace eShop.Infrastructure.Services
+﻿namespace eShop.Domain.Interfaces
 {
     public interface IEncrypter
     {

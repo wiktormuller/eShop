@@ -7,8 +7,11 @@ namespace eShop.Domain.Entities
     {
         public int OrderId { get;  set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public User User { get;  set; }
         public OrderStatus OrderStatus { get; set; } = OrderStatus.Initiated;
+
+        public int UserId { get; set; }
+        public User User { get; set; }
+
         public ShoppingCart ShoppingCart { get; set; }
     }
 }

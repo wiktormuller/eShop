@@ -11,6 +11,16 @@
     <Compile Remove="Migrations\20201017164851_Repair.Designer.cs" />
     <Compile Remove="Migrations\20201017165226_Repair.cs" />
     <Compile Remove="Migrations\20201017165226_Repair.Designer.cs" />
+    <Compile Remove="Migrations\20201019114043_ChangeRelationshipBetweenEntities.cs" />
+    <Compile Remove="Migrations\20201019114043_ChangeRelationshipBetweenEntities.Designer.cs" />
+    <Compile Remove="Migrations\20201019114507_ChangeRelationshipBetweenEntities.cs" />
+    <Compile Remove="Migrations\20201019114507_ChangeRelationshipBetweenEntities.Designer.cs" />
+    <Compile Remove="Migrations\20201019114651_NewRelationshipBetweenEntities.cs" />
+    <Compile Remove="Migrations\20201019114651_NewRelationshipBetweenEntities.Designer.cs" />
+    <Compile Remove="Migrations\20201019145356_NewSchema.cs" />
+    <Compile Remove="Migrations\20201019145356_NewSchema.Designer.cs" />
+    <Compile Remove="Migrations\20201019200056_NewDbSchema.cs" />
+    <Compile Remove="Migrations\20201019200056_NewDbSchema.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

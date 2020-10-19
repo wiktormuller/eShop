@@ -21,20 +21,6 @@ namespace eShop.Controllers
             _cartItemService = cartItemService;
         }
 
-        /*[HttpGet("CartItem/{id}", Name = "GetCartItem")]
-        public async Task<ActionResult<CartItemReadDTO>> GetCartItemByShoppingCart(int id)
-        {
-            var model = await _cartItemService.GetCartItem(id);
-            var cartItem = new CartItemReadDTO
-            {
-                CartItemId = model.CartItemId,
-                ProductId = model.ProductId,
-                Quantity = model.Quantity
-            };
-
-            return Ok(cartItem);
-        }*/
-
         [HttpPost]
         public async Task<ActionResult<CartItemReadDTO>> CreateCartItem([FromBody] CartItemCreateDTO cartItemCreateDto)
         {
@@ -53,7 +39,8 @@ namespace eShop.Controllers
                 Quantity = model.Quantity
             };
 
-            return CreatedAtRoute(nameof(GetCartItem), new { Id = cartItemReadDto.CartItemId }, cartItemReadDto);
+            //return CreatedAtRoute(nameof(GetCartItem), new { Id = cartItemReadDto.CartItemId }, cartItemReadDto); //What about that?!
+            return Ok();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
+using eShop.Domain.Interfaces;
 
 namespace eShop.Infrastructure.Services
 {

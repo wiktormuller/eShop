@@ -1,5 +1,7 @@
 ﻿using eShop.Domain.ValueObjects;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace eShop.Domain.Entities
@@ -20,8 +22,8 @@ namespace eShop.Domain.Entities
         public DateTime UpdatedAt { get; protected set; }
 
         public Address Address { get; protected set; }
-        public int? OrderId { get; protected set; }
-        public Order Order { get; protected set; }
+
+        public IEnumerable<Order> Orders { get; protected set; }
 
         public User(int userId, string email, string firstname, string lastname, string username, string role, string password, string salt)
         {

@@ -15,10 +15,12 @@ namespace eShop.Controllers
     public class ShoppingCartController : ControllerBase
     {
         public readonly IShoppingCart _shoppingCartService;
+        private readonly ICartItem _cartItemService;
 
-        public ShoppingCartController(IShoppingCart shoppingCartService)
+        public ShoppingCartController(IShoppingCart shoppingCartService, ICartItem cartItemService)
         {
             _shoppingCartService = shoppingCartService;
+            _cartItemService = cartItemService;
         }
 
         [HttpGet("{id}", Name = "GetShoppingCart")]
