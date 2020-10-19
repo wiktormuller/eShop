@@ -24,9 +24,8 @@ namespace eShop.Domain.Entities
         public Address Address { get; private set; }
         public IEnumerable<Order> Orders { get; private set; }
 
-        public User(int userId, string email, string firstname, string lastname, string username, string role, string password, string salt)
+        public User(string email, string firstname, string lastname, string username, string role, string password, string salt)
         {
-            UserId = userId;
             SetEmail(email);
             SetFirstname(firstname);
             SetLastname(lastname);

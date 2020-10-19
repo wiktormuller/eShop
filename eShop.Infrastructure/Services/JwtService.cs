@@ -47,11 +47,7 @@ namespace eShop.Infrastructure.Services
 
             var token = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            return new Jwt
-            {
-                Token = token,
-                Expires = expires.ToTimestamp()
-            };
+            return new Jwt(token, expires.ToTimestamp());
         }
     }
 }

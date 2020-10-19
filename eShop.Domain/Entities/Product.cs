@@ -11,9 +11,8 @@ namespace eShop.Domain.Entities
         public ProductColor Color { get; private set; }
         public string Description { get; private set; }
 
-        public Product(int productId, string name, decimal price, ProductColor color, string description)
+        public Product(string name, decimal price, ProductColor color, string description)
         {
-            ProductId = productId;
             SetName(name);
             SetPrice(price);
             SetColor(color);
