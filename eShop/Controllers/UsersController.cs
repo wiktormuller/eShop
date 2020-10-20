@@ -58,7 +58,6 @@ namespace eShop.Controllers
         {
             var model = new User
             (
-                userCreateDto.UserId,
                 userCreateDto.Email,
                 userCreateDto.Firstname,
                 userCreateDto.Lastname,

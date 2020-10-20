@@ -11,12 +11,25 @@ namespace eShop.Domain.Entities
         public ProductColor Color { get; private set; }
         public string Description { get; private set; }
 
-        public Product(string name, decimal price, ProductColor color, string description)
+        //Relations
+        public int CategoryId { get; private set; }
+
+        public Product(string name, decimal price, ProductColor color, string description, int categoryId)
         {
             SetName(name);
             SetPrice(price);
             SetColor(color);
             SetDescription(description);
+            SetCategory(categoryId);
+        }
+
+        public void SetCategory(int categoryId)
+        {
+            if(categoryId < 0)
+            {
+                throw new ArgumentException();
+            }
+            CategoryId = categoryId;
         }
 
         public void SetColor(ProductColor color)

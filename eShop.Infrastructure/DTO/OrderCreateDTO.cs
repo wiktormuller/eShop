@@ -6,7 +6,6 @@ namespace eShop.Infrastructure.DTO
 {
     public class OrderCreateDTO
     {
-        public int OrderId { get; set; }
         public User User { get; set; }
     }
 }

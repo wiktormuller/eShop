@@ -26,5 +26,6 @@ namespace eShop.Infrastructure
         public DbSet<User> Users { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
