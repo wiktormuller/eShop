@@ -25,11 +25,11 @@ namespace eShop.Controllers
         public async Task<ActionResult<CartItemReadDTO>> CreateCartItem([FromBody] CartItemCreateDTO cartItemCreateDto)
         {
             var model = new CartItem
-            {
-                ProductId = cartItemCreateDto.ProductId,
-                Quantity = cartItemCreateDto.Quantity,
-                ShoppingCartId = cartItemCreateDto.ShoppingCartId
-            };
+            (
+                cartItemCreateDto.ProductId,
+                cartItemCreateDto.Quantity,
+                cartItemCreateDto.ShoppingCartId
+            );
             await _cartItemService.AddCartItem(model);
 
             var cartItemReadDto = new CartItemReadDTO

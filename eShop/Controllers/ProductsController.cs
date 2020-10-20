@@ -31,14 +31,33 @@ namespace eShop.Controllers
                     Name = p.Name,
                     Price = p.Price,
                     Color = p.Color,
-                    Description = p.Description
+                    Description = p.Description,
+                    CategoryId = p.CategoryId
+                }).ToList();
+
+            return Ok(products);
+        }
+
+        [HttpGet("GetProductsByCategory/{id}")]
+        public async Task<ActionResult<IEnumerable<ProductReadDTO>>> GetProductsByCategory(int id)
+        {
+            var models = await _productService.GetProductsByCategory(id);
+
+            var products = models.Select(p =>
+                new ProductReadDTO()
+                {
+                    Name = p.Name,
+                    Price = p.Price,
+                    Color = p.Color,
+                    Description = p.Description,
+                    CategoryId = p.CategoryId
                 }).ToList();
 
             return Ok(products);
         }
 
         [HttpGet("{id}", Name = "GetProduct")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<ProductReadDTO>> GetProduct(int id)
         {
             var product = await _productService.GetProduct(id);
 
@@ -47,7 +66,8 @@ namespace eShop.Controllers
                 Name = product.Name,
                 Price = product.Price,
                 Color = product.Color,
-                Description = product.Description
+                Description = product.Description,
+                CategoryId = product.CategoryId
             };
 
             return Ok(model);
@@ -58,11 +78,11 @@ namespace eShop.Controllers
         {
             var model = new Product
             (
-                productCreateDto.ProductId,
                 productCreateDto.Name,
                 productCreateDto.Price,
                 productCreateDto.Color,
-                productCreateDto.Description
+                productCreateDto.Description,
+                productCreateDto.CategoryId
             );
             await _productService.AddProduct(model);
 

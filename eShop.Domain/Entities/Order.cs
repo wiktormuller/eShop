@@ -14,10 +14,20 @@ namespace eShop.Domain.Entities
         public User User { get; private set; }
         public ShoppingCart ShoppingCart { get; private set; }
 
-        public Order(OrderStatus orderStatus)
+        public Order(OrderStatus orderStatus, int userId)
         {
+            SetUserId(userId);
             CreatedAt = DateTime.Now;
             SetOrderStatus(orderStatus);
+        }
+
+        public void SetUserId(int userId)
+        {
+            if(userId < 0)
+            {
+                throw new ArgumentException();
+            }
+            UserId = userId;
         }
 
         public void SetOrderStatus(OrderStatus orderStatus)

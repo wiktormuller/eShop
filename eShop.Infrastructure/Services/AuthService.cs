@@ -43,7 +43,7 @@ namespace eShop.Infrastructure.Services
 
             var salt = _encrypter.GetSalt(password);
             var hash = _encrypter.GetHash(password, salt);
-            user = new User(userId, email, firstname, lastname, username, role, hash, salt);
+            user = new User(email, firstname, lastname, username, role, hash, salt);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
         }

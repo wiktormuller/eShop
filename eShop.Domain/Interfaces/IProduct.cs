@@ -8,6 +8,7 @@ namespace eShop.Domain.Interfaces
     {
         Task<IEnumerable<Product>> GetProducts();
         Task<Product> GetProduct(int id);
+        Task<IEnumerable<Product>> GetProductsByCategory(int id);
         Task AddProduct(Product product);
         Task RemoveProduct(Product product);
         Task UpdateProduct(Product product);

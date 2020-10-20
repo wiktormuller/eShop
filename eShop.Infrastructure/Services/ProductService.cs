@@ -34,6 +34,12 @@ namespace eShop.Infrastructure.Services
             return product;
         }
 
+        public async Task<IEnumerable<Product>> GetProductsByCategory(int id)
+        {
+            var product = await _context.Products.Where(p => p.CategoryId == id).ToListAsync();
+            return product;
+        }
+
         public async Task<IEnumerable<Product>> GetProducts()
         {
             var products = await _context.Products.ToListAsync();

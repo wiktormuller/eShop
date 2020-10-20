@@ -12,10 +12,20 @@ namespace eShop.Domain.Entities
         public int ShoppingCartId { get; private set; }
         public ShoppingCart ShoppingCart { get; private set; }
 
-        public CartItem(int productId, int quantity)
+        public CartItem(int productId, int quantity, int shoppingCartId)
         {
             SetProductId(productId);
             SetQuantity(quantity);
+            SetShoppingCartId(shoppingCartId);
+        }
+
+        public void SetShoppingCartId(int shoppingCartId)
+        {
+            if(shoppingCartId < 0)
+            {
+                throw new ArgumentException();
+            }
+            ShoppingCartId = shoppingCartId;
         }
 
         public void SetQuantity(int quantity)
