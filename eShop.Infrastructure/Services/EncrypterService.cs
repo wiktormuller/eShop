@@ -4,7 +4,7 @@ using eShop.Domain.Interfaces;
 
 namespace eShop.Infrastructure.Services
 {
-    public class Encrypter : IEncrypter
+    public class EncrypterService : IEncrypter
     {
         private static readonly int DeriveBytesIterationsCount = 10000;
         private static readonly int SaltSize = 40;

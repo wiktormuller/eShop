@@ -13,6 +13,9 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Text;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using eShop.Infrastructure.IoC.Modules;
 
 namespace eShop
 {
@@ -26,7 +29,7 @@ namespace eShop
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddControllers().AddNewtonsoftJson(s =>
             {
@@ -71,8 +74,15 @@ namespace eShop
             services.AddScoped<IShoppingCart, ShoppingCartService>();
             services.AddScoped<IUser, UserService>();
 
-            services.AddScoped<IEncrypter, Encrypter>();
+            services.AddScoped<IEncrypter, EncrypterService>();
             services.AddScoped<IJwt, JwtService>();
+
+            var builder = new ContainerBuilder();
+            builder.RegisterModule<ServiceModule>();
+            builder.Populate(services);
+
+            var container = builder.Build();
+            return new AutofacServiceProvider(container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
