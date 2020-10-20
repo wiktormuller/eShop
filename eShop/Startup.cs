@@ -67,16 +67,6 @@ namespace eShop
             services.AddAuthorization();
             //services.AddAuthorization(x => x.AddPolicy("Admin", p => p.RequireRole("Admin")));
 
-            services.AddScoped<IAuth, AuthService>();
-            services.AddScoped<ICartItem, CartItemService>();
-            services.AddScoped<IOrder, OrderService>();
-            services.AddScoped<IProduct, ProductService>();
-            services.AddScoped<IShoppingCart, ShoppingCartService>();
-            services.AddScoped<IUser, UserService>();
-
-            services.AddScoped<IEncrypter, EncrypterService>();
-            services.AddScoped<IJwt, JwtService>();
-
             var builder = new ContainerBuilder();
             builder.RegisterModule<ServiceModule>();
             builder.Populate(services);
