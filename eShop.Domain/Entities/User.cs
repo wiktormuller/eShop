@@ -37,14 +37,16 @@ namespace eShop.Domain.Entities
 
         public void SetUsername(string username)
         {
-            if(!RegexOfUsername.IsMatch(username))
-            {
-                throw new ArgumentException();
-            }
-
-            if(string.IsNullOrEmpty(username))
+            if (string.IsNullOrEmpty(username))
             {
                 throw new ArgumentNullException();
+            }
+            else
+            {
+                if (!IsUsernameCorrectWithRegex(username, RegexOfUsername))
+                {
+                    throw new ArgumentException();
+                }
             }
 
             Username = username.ToLowerInvariant();
@@ -53,12 +55,12 @@ namespace eShop.Domain.Entities
 
         public void SetEmail(string email)
         {
-            if(string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(email))
             {
                 throw new ArgumentNullException();
             }
 
-            if(Email == email)
+            if (Email == email)
             {
                 return;
             }
@@ -87,12 +89,12 @@ namespace eShop.Domain.Entities
 
         public void SetRole(string role)
         {
-            if(string.IsNullOrWhiteSpace(role))
+            if (string.IsNullOrWhiteSpace(role))
             {
                 throw new ArgumentNullException();
             }
 
-            if(Role == role)
+            if (Role == role)
             {
                 return;
             }
@@ -103,27 +105,27 @@ namespace eShop.Domain.Entities
 
         public void SetPassword(string password, string salt)
         {
-            if(string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(password))
             {
                 throw new ArgumentNullException();
             }
 
-            if(string.IsNullOrWhiteSpace(salt))
+            if (string.IsNullOrWhiteSpace(salt))
             {
                 throw new ArgumentNullException();
             }
 
-            if(password.Length < 4)
+            if (password.Length < 4)
             {
                 throw new ArgumentException();
             }
 
-            if(password.Length > 100)
+            if (password.Length > 100)
             {
                 throw new ArgumentException();
             }
 
-            if(Password == password)
+            if (Password == password)
             {
                 return;
             }
@@ -131,6 +133,15 @@ namespace eShop.Domain.Entities
             Password = password;
             Salt = salt;
             CreatedAt = DateTime.UtcNow;
+        }
+
+        public bool IsUsernameCorrectWithRegex(string username, Regex regexOfUsername)
+        {
+            if (!regexOfUsername.IsMatch(username))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

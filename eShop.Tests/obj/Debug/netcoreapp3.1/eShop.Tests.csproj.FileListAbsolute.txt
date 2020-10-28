@@ -93,3 +93,8 @@ C:\Users\Wiktor\Desktop\eShop\eShop.Tests\bin\Debug\netcoreapp3.1\xunit.executio
 C:\Users\Wiktor\Desktop\eShop\eShop.Tests\bin\Debug\netcoreapp3.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 C:\Users\Wiktor\Desktop\eShop\eShop.Tests\bin\Debug\netcoreapp3.1\xunit.runner.reporters.netcoreapp10.dll
 C:\Users\Wiktor\Desktop\eShop\eShop.Tests\bin\Debug\netcoreapp3.1\xunit.runner.utility.netcoreapp10.dll
+C:\Users\Wiktor\Desktop\eShop\eShop.Tests\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\Wiktor\Desktop\eShop\eShop.Tests\bin\Debug\netcoreapp3.1\Moq.dll
+C:\Users\Wiktor\Desktop\eShop\eShop.Tests\bin\Debug\netcoreapp3.1\eShop.Domain.dll
+C:\Users\Wiktor\Desktop\eShop\eShop.Tests\bin\Debug\netcoreapp3.1\eShop.Domain.pdb
+C:\Users\Wiktor\Desktop\eShop\eShop.Tests\obj\Debug\netcoreapp3.1\eShop.Tests.csproj.CoreCompileInputs.cache
