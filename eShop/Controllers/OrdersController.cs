@@ -4,6 +4,7 @@ using eShop.Infrastructure.DTO;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace eShop.Controllers
 {
@@ -19,9 +20,23 @@ namespace eShop.Controllers
         }
 
         [HttpGet("{id}", Name = "GetOrder")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
+        public async Task<ActionResult<OrderReadDTO>> GetOrder(int id)
         {
-            var order = await _orderService.GetOrder(id);
+            var model = await _orderService.GetOrder(id);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            var order = new OrderReadDTO
+            {
+                OrderId = model.OrderId,
+                CreatedAt = model.CreatedAt,
+                User = model.User,
+                OrderStatus = model.OrderStatus
+            };
+
             return Ok(order);
         }
 

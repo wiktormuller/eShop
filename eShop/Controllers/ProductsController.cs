@@ -25,6 +25,11 @@ namespace eShop.Controllers
         {
             var models = await _productService.GetProducts();
             
+            if(models == null)
+            {
+                return NotFound();
+            }
+
             var products = models.Select(p =>
                 new ProductReadDTO()
                 {
@@ -43,6 +48,11 @@ namespace eShop.Controllers
         {
             var models = await _productService.GetProductsByCategory(id);
 
+            if (models == null)
+            {
+                return NotFound();
+            }
+
             var products = models.Select(p =>
                 new ProductReadDTO()
                 {
@@ -59,23 +69,33 @@ namespace eShop.Controllers
         [HttpGet("{id}", Name = "GetProduct")]
         public async Task<ActionResult<ProductReadDTO>> GetProduct(int id)
         {
-            var product = await _productService.GetProduct(id);
+            var model = await _productService.GetProduct(id);
 
-            var model = new ProductReadDTO
+            if (model == null)
             {
-                Name = product.Name,
-                Price = product.Price,
-                Color = product.Color,
-                Description = product.Description,
-                CategoryId = product.CategoryId
+                return NotFound();
+            }
+
+            var product = new ProductReadDTO
+            {
+                Name = model.Name,
+                Price = model.Price,
+                Color = model.Color,
+                Description = model.Description,
+                CategoryId = model.CategoryId
             };
 
-            return Ok(model);
+            return Ok(product);
         }
 
         [HttpPost]
         public async Task<ActionResult<ProductReadDTO>> CreateProduct([FromBody] ProductCreateDTO productCreateDto)
         {
+            if (productCreateDto == null)
+            {
+                return BadRequest();
+            }
+
             var model = new Product
             (
                 productCreateDto.Name,

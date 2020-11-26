@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace eShop.Controllers
 {
@@ -27,6 +28,11 @@ namespace eShop.Controllers
         {
             var models = await _userService.GetUsers();
 
+            if(models == null)
+            {
+                return NotFound();
+            }
+
             var users = models.Select(c =>
                 new UserReadDTO()
                 {
@@ -43,6 +49,12 @@ namespace eShop.Controllers
         public async Task<ActionResult<User>> GetUser(int id)
         {
             var user = await _userService.GetUser(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
             var model = new UserReadDTO()
             {
                 UserId = user.UserId,
@@ -54,8 +66,13 @@ namespace eShop.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<UserReadDTO>> CreateUser([FromBody] UserCreateDTO userCreateDto) //Return type is UserReadDTO as a HTTP response
+        public async Task<ActionResult<UserReadDTO>> CreateUser([FromBody] UserCreateDTO userCreateDto)
         {
+            if (userCreateDto == null)
+            {
+                return BadRequest();
+            }
+
             var model = new User
             (
                 userCreateDto.Email,

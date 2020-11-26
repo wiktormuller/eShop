@@ -24,6 +24,11 @@ namespace eShop.Controllers
         [HttpPost]
         public async Task<ActionResult<CartItemReadDTO>> CreateCartItem([FromBody] CartItemCreateDTO cartItemCreateDto)
         {
+            if (cartItemCreateDto == null)
+            {
+                return BadRequest();
+            }
+
             var model = new CartItem
             (
                 cartItemCreateDto.ProductId,

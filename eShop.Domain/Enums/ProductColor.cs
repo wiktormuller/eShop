@@ -2,9 +2,13 @@
 {
     public enum ProductColor
     {
-        Black,
-        White,
-        Red,
-        Blue
+        Black,  //== 0
+        White,  //1
+        Red,    //2
+        Blue,   //3
+        MonolitGreen,   //4
+        Grey,   //5
+        Gold,   //6
+        SkyBlue,    //7
     }
 }

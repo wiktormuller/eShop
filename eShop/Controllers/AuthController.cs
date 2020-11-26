@@ -24,7 +24,10 @@ namespace eShop.Controllers
         [HttpPost("login")]
         public async Task<ActionResult> Login(LoginDTO loginDto)
         {
-            loginDto.TokenId = Guid.NewGuid();
+            if(loginDto == null)
+            {
+                return BadRequest();
+            }
 
             await _authService.Login(loginDto.Email, loginDto.Password);
             var user = await _userService.GetUser(loginDto.Email);
@@ -34,12 +37,24 @@ namespace eShop.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult> Register(RegisterDTO registerDto)
+        public ActionResult Register(RegisterDTO registerDto)
         {
-            await _authService.Register(registerDto.UserId, registerDto.Email, registerDto.Firstname, registerDto.Lastname, registerDto.Username, registerDto.Password, registerDto.Role);
-            var createdUser = _userService.GetUser(registerDto.Email);
+            if(registerDto == null)
+            {
+                return BadRequest();
+            }
 
-            return Ok(createdUser);
+            try
+            {
+                _authService.Register(registerDto.Email, registerDto.Firstname, registerDto.Lastname, registerDto.Username, registerDto.Password, registerDto.Role);
+                //var createdUser = _userService.GetUser(registerDto.Email);
+
+                return Ok();    //Return RegisterReadDTO
+            }
+            catch(InvalidOperationException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

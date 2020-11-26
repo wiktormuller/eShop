@@ -26,7 +26,14 @@ namespace eShop.Controllers
         [HttpGet("{id}", Name = "GetShoppingCart")]
         public async Task<ActionResult<ShoppingCartReadDTO>> GetShoppingCart(int id)
         {
+            
             var model = await _shoppingCartService.GetShopingCart(id);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
             var shoppingCart = new ShoppingCartReadDTO
             {
                 ShoppingCartId = model.ShoppingCartId,
@@ -41,7 +48,8 @@ namespace eShop.Controllers
         [HttpPost]
         public async Task<ActionResult<ShoppingCartReadDTO>> CreateShoppingCart(/*[FromBody] ShoppingCartCreateDTO shoppingCartCreateDto*/)
         {
-            var model = new ShoppingCart();
+            var model = new ShoppingCart(); //Check null value?
+
             await _shoppingCartService.AddShoppingCart(model);
 
             var shoppingCartReadDto = new ShoppingCartReadDTO

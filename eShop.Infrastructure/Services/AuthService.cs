@@ -2,6 +2,7 @@
 using eShop.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace eShop.Infrastructure.Services
@@ -33,19 +34,19 @@ namespace eShop.Infrastructure.Services
             throw new ArgumentException();
         }
 
-        public async Task Register(int userId, string email, string firstname, string lastname, string username, string password, string role)
+        public void Register(string email, string firstname, string lastname, string username, string password, string role)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            var user = _context.Users.FirstOrDefault(u => u.Email == email);
             if (user != null)
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("User with that email already exists.");  //Should handle that exception
             }
 
             var salt = _encrypter.GetSalt(password);
             var hash = _encrypter.GetHash(password, salt);
             user = new User(email, firstname, lastname, username, role, hash, salt);
             _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
     }
 }

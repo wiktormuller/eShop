@@ -16,6 +16,7 @@ using System.Text;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using eShop.Infrastructure.IoC.Modules;
+using Newtonsoft.Json;
 
 namespace eShop
 {
@@ -35,6 +36,7 @@ namespace eShop
         }
 
         public IConfiguration Configuration { get; }
+        public ILifetimeScope AutofacContainer { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -42,6 +44,7 @@ namespace eShop
             services.AddControllers().AddNewtonsoftJson(s =>
             {
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                s.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
 
             services.AddSwaggerGen();
@@ -68,20 +71,27 @@ namespace eShop
                     RequireExpirationTime = true,
                     ValidateIssuer = true,
                     ValidateIssuerSigningKey = true,
-                    ValidateAudience = true
+                    ValidateAudience = false
                 };
             });
 
             services.AddAuthorization();
             //services.AddAuthorization(x => x.AddPolicy("Admin", p => p.RequireRole("Admin")));
+        }
 
-            var builder = new ContainerBuilder();
-            builder.RegisterModule<ServiceModule>();
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            // Register your own things directly with Autofac here. Don't
+            // call builder.Populate(), that happens in AutofacServiceProviderFactory
+            // for you.
+            builder.RegisterModule(new ServiceModule());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -15,10 +15,6 @@ namespace eShop.Infrastructure.Services
             {
                 throw new ArgumentException("Can not generate hash from an empty value.", nameof(value));
             }
-            if(string.IsNullOrWhiteSpace(value))
-            {
-                throw new ArgumentException("Can not use an empty salt from hashing value.", nameof(value));
-            }
 
             var pbkdf2 = new Rfc2898DeriveBytes(value, GetBytes(salt), DeriveBytesIterationsCount);
 
@@ -32,7 +28,6 @@ namespace eShop.Infrastructure.Services
                 throw new ArgumentException("Can not generate salt from an empty value.", nameof(value));
             }
 
-            var random = new Random();
             var saltBytes = new byte[SaltSize];
             var rng = RandomNumberGenerator.Create();
             rng.GetBytes(saltBytes);

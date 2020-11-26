@@ -11,6 +11,6 @@ namespace eShop.Infrastructure.DTO
         public DateTime CreatedAt { get; set; }
         public User User { get; set; }
         public OrderStatus OrderStatus { get; set; }
-        public IEnumerable<CartItem> OrderItems { get; set; }
+        //public IEnumerable<CartItem> OrderItems { get; set; }
     }
 }
