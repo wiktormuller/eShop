@@ -8,20 +8,26 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using eShop.Domain.Entities;
+using System.Threading.Tasks;
 
 namespace eShop.Infrastructure.Services
 {
     public class JwtService : IJwt
     {
+        private readonly IUser _userService;
+
         public IConfiguration _configuration { get; }
 
-        public JwtService(IConfiguration configuration)
+        public JwtService(IConfiguration configuration, IUser userService)
         {
             _configuration = configuration;
+            _userService = userService;
         }
 
         public Jwt CreateToken(int userId, string role)
         {
+            var user = _userService.GetUser(userId).Result;
+            var email = user.Email;
             var now = DateTime.UtcNow;
 
             var claims = new Claim[]
@@ -30,7 +36,8 @@ namespace eShop.Infrastructure.Services
                     new Claim(JwtRegisteredClaimNames.UniqueName, userId.ToString()),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Iat, now.ToTimestamp().ToString(), ClaimValueTypes.Integer64),
-                    new Claim(ClaimTypes.Role, role)
+                    new Claim(ClaimTypes.Role, role),
+                    new Claim(ClaimTypes.Email, email)
             };
 
             var expires = now.AddMinutes(_configuration.GetValue<double>("Auth:Jwt:TimeExpirationInMinutes"));

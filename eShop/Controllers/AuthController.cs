@@ -21,7 +21,7 @@ namespace eShop.Controllers
             _userService = userService;
         }
 
-        [HttpPost("login")]
+        [HttpGet("login")]
         public async Task<ActionResult> Login(LoginDTO loginDto)
         {
             if(loginDto == null)
@@ -47,9 +47,8 @@ namespace eShop.Controllers
             try
             {
                 _authService.Register(registerDto.Email, registerDto.Firstname, registerDto.Lastname, registerDto.Username, registerDto.Password, registerDto.Role);
-                //var createdUser = _userService.GetUser(registerDto.Email);
 
-                return Ok();    //Return RegisterReadDTO
+                return Ok();    //Return RegisterReadDTO with created user? Or wait for mail verification?
             }
             catch(InvalidOperationException e)
             {

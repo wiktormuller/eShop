@@ -11,7 +11,6 @@ namespace eShop.Infrastructure.IoC.Modules
             base.Load(builder);
 
             builder.RegisterType<AuthService>().As<IAuth>().InstancePerLifetimeScope();
-            builder.RegisterType<CartItemService>().As<ICartItem>().InstancePerLifetimeScope();
             builder.RegisterType<EncrypterService>().As<IEncrypter>().InstancePerLifetimeScope();
             builder.RegisterType<JwtService>().As<IJwt>().InstancePerLifetimeScope();
             builder.RegisterType<OrderService>().As<IOrder>().InstancePerLifetimeScope();

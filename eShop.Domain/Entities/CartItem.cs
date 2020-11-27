@@ -5,27 +5,18 @@ namespace eShop.Domain.Entities
     public class CartItem
     {
         public int CartItemId { get; private set; }
+        public int Quantity { get; set; }   //Maybe private?
+        public decimal UnitPrice { get; private set; }
+        public decimal TotalPrice { get; set; }
+
         public int ProductId { get; private set; }
-        public int Quantity { get; private set; }
 
-        //Relations
-        public int ShoppingCartId { get; private set; }
-        public ShoppingCart ShoppingCart { get; private set; }
-
-        public CartItem(int productId, int quantity, int shoppingCartId)
+        public CartItem(int productId, int quantity, decimal unitPrice, decimal totalPrice)
         {
-            SetProductId(productId);
             SetQuantity(quantity);
-            SetShoppingCartId(shoppingCartId);
-        }
-
-        public void SetShoppingCartId(int shoppingCartId)
-        {
-            if(shoppingCartId < 0)
-            {
-                throw new ArgumentException();
-            }
-            ShoppingCartId = shoppingCartId;
+            SetUnitPrice(unitPrice);
+            SetTotalPrice(totalPrice);
+            SetProductId(productId);
         }
 
         public void SetQuantity(int quantity)
@@ -45,7 +36,17 @@ namespace eShop.Domain.Entities
             Quantity = quantity;
         }
 
-        public void SetProductId(int productId)
+        public void SetUnitPrice(decimal unitPrice)
+        {
+            UnitPrice = unitPrice;
+        }
+        
+        public void SetTotalPrice(decimal totalPrice)
+        {
+            TotalPrice = totalPrice;
+        }
+
+        private void SetProductId(int productId)
         {
             if(productId < 0)
             {
