@@ -32,10 +32,10 @@ namespace eShop.Infrastructure.Services
 
             var claims = new Claim[]
             {
-                    new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
+                    new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),  //Subject (Title)
                     new Claim(JwtRegisteredClaimNames.UniqueName, userId.ToString()),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim(JwtRegisteredClaimNames.Iat, now.ToTimestamp().ToString(), ClaimValueTypes.Integer64),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),  //JWT ID
+                    new Claim(JwtRegisteredClaimNames.Iat, now.ToTimestamp().ToString(), ClaimValueTypes.Integer64),    //Issued at (time at which JWT was issued)
                     new Claim(ClaimTypes.Role, role),
                     new Claim(ClaimTypes.Email, email)
             };

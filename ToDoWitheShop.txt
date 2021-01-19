@@ -1,0 +1,33 @@
+General Problems:
+- Address is not null
+- MediatR
+- NLog
+- What if object doesnt exist while use PUT method? Create new or not? Which HTML code to return?
+- What does the Encrypter?
+- Why JWT>Auth>Key have to be long?
+- Add command dispatcher?
+- Add own exceptions to services and exception middleware
+
+ShoppingCart:
+- User can have only one shopping cart
+- Can edit quantity of items in the shopping cart
+- Can see the whole price of shopping cart
+- Can empty shopping cart?
+- Confirm the order in database and remove shopping cart (no more edit option)
+
+Search Engine:
+- Can take product by manufacturer id
+- Can search products by some of keywords
+- Can get list of featured products
+- Search with parameters combination: limit, page, start, sort, order, 
+
+Users:
+- Change user password
+- What about roles in user entity?
+
+Logic:
+[ShoppingCart] should be created when we want to add the first one [CartItem]
+/ShoppingCart/Process should create the [Order]
+
+
+LEARN SQL STATEMENTS

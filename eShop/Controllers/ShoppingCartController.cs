@@ -28,7 +28,7 @@ namespace eShop.Controllers
         public async Task<ActionResult<ShoppingCartReadDTO>> GetShoppingCartByEmail()
         {
             var email = User.FindFirst(ClaimTypes.Email).Value;
-            var model = _shoppingCartService.GetShopingCartByEmail(email).Result;
+            var model = await _shoppingCartService.GetShopingCartByEmail(email);    //.Result
 
             if (model == null)
             {
